@@ -1,0 +1,19 @@
+{
+  "name": "autohub_api",
+  "version": "1.0.0",
+  "description": "An api which is used to give data to client. The api is for AutoHub app.",
+  "main": "index.js",
+  "scripts": {
+    "start": "nodemon"
+  },
+  "author": "Plamen Michev",
+  "license": "ISC",
+  "dependencies": {
+    "dotenv": "^8.2.0",
+    "express": "^4.17.1",
+    "jsonwebtoken": "^8.5.1"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.4"
+  }
+}
