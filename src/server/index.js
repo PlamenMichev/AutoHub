@@ -2,6 +2,8 @@ const env = process.env.NODE_ENV || "development";
 
 const usersRouter = require('./routes/users');
 const carsRouter = require('./routes/cars');
+const makesRouter = require('./routes/makes');
+const modelsRouter = require('./routes/models');
 const cron = require("node-cron");
 
 const app = require('express')();
@@ -11,6 +13,8 @@ require('dotenv').config();
 
 app.use('/users', usersRouter);
 app.use('/cars', carsRouter);
+app.use('/makes', makesRouter);
+app.use('/models', modelsRouter);
 
 app.get('*', (req, res) => {
     res
