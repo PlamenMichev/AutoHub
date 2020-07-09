@@ -9,12 +9,17 @@
   "author": "Plamen Michev",
   "license": "ISC",
   "dependencies": {
+    "body-parser": "^1.19.0",
+    "cloudinary": "^1.22.0",
     "dotenv": "^8.2.0",
     "express": "^4.17.1",
     "fs": "0.0.1-security",
     "jsonwebtoken": "^8.5.1",
+    "multer": "^1.4.2",
     "node-cron": "^2.0.3",
-    "node-fetch": "^2.6.0"
+    "node-fetch": "^2.6.0",
+    "path": "^0.12.7",
+    "streamifier": "^0.1.1"
   },
   "devDependencies": {
     "nodemon": "^2.0.4"

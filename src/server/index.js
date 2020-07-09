@@ -7,9 +7,13 @@ const modelsRouter = require('./routes/models');
 const cron = require("node-cron");
 
 const app = require('express')();
+const bodyParser = require('body-parser');
 const config = require('./config/config')[env];
 const { fetchMakes, fetchModels } = require('./utils/cron-jobs');
 require('dotenv').config();
+
+app.use(bodyParser.urlencoded({ extended: false }));
+app.use(bodyParser.json());
 
 app.use('/users', usersRouter);
 app.use('/cars', carsRouter);
