@@ -14,10 +14,25 @@ const createNewUser = async (email, password, firstName, lastName, phoneNumber, 
     const salt = await bcrypt.genSalt(process.env.SaltRounds);
     const hashedPassword = await bcrypt.hash(password, salt);
 
-    const newUser = User({email, password: hashedPassword, firstName, lastName, phoneNumber, imageUrl}).save();
-    return newUser;
+    try {
+        const newUser = User({email, password: hashedPassword, firstName, lastName, phoneNumber, imageUrl}).save();
+        return newUser;
+    } catch (error) {
+        return error;
+    }
+}
+
+const checkUser = async (email, password) => {
+    let result = false;
+    const user = await User.findOne({'email': email});
+    if (user && await bcrypt.compare(password, user.password)) {
+        result = user;    
+    }
+
+    return result;
 }
 
 module.exports = {
     createNewUser,
+    checkUser,
 }
