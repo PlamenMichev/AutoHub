@@ -1,14 +1,11 @@
 const { Router } = require('express');
+const { createUser } = require('../controllers/users-controller');
 const { generateToken, authenticateUser } = require('../utils/auth');
-const { uploadImage } = require('../utils/cloudinary');
-var multer  = require('multer')();
+const multer  = require('multer')();
 
 const router = Router();
 
-router.post('/', multer.single('image'), async (req, res) => {
-    const result = await uploadImage(req.file);
-    return res.status(200).json({imageUrl: result});
-});
+router.post('/create', multer.single('profilePicture'), createUser);
 
 router.get('/create', async (req, res) => {
     const token = await generateToken(1, "Plamen");

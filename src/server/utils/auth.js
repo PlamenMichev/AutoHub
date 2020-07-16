@@ -1,16 +1,18 @@
+const env = process.env.NODE_ENV || "development";
 const jwt = require('jsonwebtoken');
+const config = require('../config/config')[env];
 
-const generateToken = async (id, username) => {
+const generateToken = async (id, firstName) => {
     const token = await jwt.sign({
         id,
-        username,
+        firstName,
     }, process.env.JWT_KEY);
 
     return token;
 }
 
 const authenticateUser = async (req, res, next) => {
-    const authHeaders = req.headers['authorization'];
+    const authHeaders = req.headers[config.auth];
     console.log(req.headers);
     if (!authHeaders) {
         return res
