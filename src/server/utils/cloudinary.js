@@ -24,7 +24,6 @@ const uploadImage = async (file) => {
                 }
             });
 
-            console.log('shishe')
             streamifier.createReadStream(file.buffer).pipe(cloudinaryStream);
         });
     }

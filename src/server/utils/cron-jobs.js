@@ -57,7 +57,6 @@ const fetchModels = async () => {
       }
     );
     const makesAndModels = await makesModelsResponse.json();
-      console.log(makesAndModels)
     fs.readFile('./data/makes.json', 'utf-8', (err, data) => {
       const makes = JSON.parse(data);
       const result = [];

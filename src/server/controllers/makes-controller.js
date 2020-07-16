@@ -1,12 +1,21 @@
-const fs = require('fs');
+const { getAllMakes } = require('../services/makes-service');
 
-const getAllMakes = (callback) => {
-    fs.readFile('./data/makes.json', 'utf-8', (err, data) => {
-        const makes = JSON.parse(data);
-        return callback(makes);
-    });
+const getAllCarMakes = (req, res) => {
+    try {
+        getAllMakes((makes) => {
+            return res
+                    .status(200)
+                    .json(makes);
+        });
+    } catch (error) {
+        return res
+                .status(500)
+                .json({
+                    message: 'Internal server error!',
+                });
+    }
 };
 
 module.exports = {
-    getAllMakes,
+    getAllCarMakes,
 }

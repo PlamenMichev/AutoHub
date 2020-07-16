@@ -1,16 +1,19 @@
-const fs = require('fs');
+const { getAllModelsForMake } = require('../services/models-service');
 
-const getModelsForMake = (make, callback) => {
-    fs.readFile('./data/models.json', 'utf-8', (err, data) => {
-        const models = JSON.parse(data);
-        let extractedModels;
-        for (const obj of models) {
-            if (obj[make]) {
-                extractedModels = obj[make];
-                break;
-            }
+const getModelsForMake = (req, res) => {
+    const make = req.query.make;
+    getAllModelsForMake(make, (models) => {
+        if (!models) {
+            return res
+                    .status(404)
+                    .json({
+                        message: 'Invalid car make!',
+                    });
         }
-        return callback(extractedModels);
+
+        return res
+                .status(200)
+                .json(models);
     });
 };
 
