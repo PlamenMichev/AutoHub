@@ -16,9 +16,8 @@ const uploadImage = async (file) => {
     const cloudinaryUpload = async() => { await new Promise((resolve, reject) => {
             const cloudinaryStream = cloudinary.uploader.upload_stream(function (error, result) {
                 if (result) {
-                    resultUrl = result.secure_url;
                     resultSecureUrl = result.secure_url;
-                    resolve(resultUrl)
+                    resolve(resultSecureUrl)
                 } else {
                     reject(error);
                 }

@@ -4,6 +4,7 @@ require('dotenv').config();
 const usersRouter = require('./routes/users');
 const makesRouter = require('./routes/makes');
 const modelsRouter = require('./routes/models');
+const adsRouter = require('./routes/ads');
 const cron = require("node-cron");
 
 const cors = require('cors');
@@ -28,6 +29,7 @@ mongoose.connect(config.dbUrl, { useNewUrlParser: true, useUnifiedTopology: true
 app.use('/users', usersRouter);
 app.use('/makes', makesRouter);
 app.use('/models', modelsRouter);
+app.use('/ads', adsRouter);
 
 app.get('*', (req, res) => {
     res
