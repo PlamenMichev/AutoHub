@@ -6,6 +6,7 @@ const makesRouter = require('./routes/makes');
 const modelsRouter = require('./routes/models');
 const cron = require("node-cron");
 
+const cors = require('cors');
 const app = require('express')();
 const bodyParser = require('body-parser');
 const mongoose = require('mongoose');
@@ -35,6 +36,8 @@ app.get('*', (req, res) => {
             message: 'Not Found!',
         });
 })
+
+app.use(cors());
 
 cron.schedule("10 * * * 7", async function() {
     await fetchMakes();

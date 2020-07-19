@@ -1,6 +1,7 @@
 const env = process.env.NODE_ENV || "development";
 const { generateToken } = require('../utils/auth');
-const { createNewUser, checkUser } = require('../services/users-service');
+const { createNewUser, checkUser, getUserById } = require('../services/users-service');
+const { use } = require('../routes/users');
 const config = require('../config/config')[env];
 
 const createUser = async (req, res) => {
@@ -66,7 +67,24 @@ const login = async (req, res) => {
     }
 }
 
+const getUser = async (req, res) => {
+    console.log(req.params);
+    console.log(req.query);
+    const user = await getUserById(req.params.id);
+
+    if (user) {
+        res.status(404)
+            .json(user);
+    } else {
+        res.status(404)
+            .json({
+                message: 'User not found!',
+            });
+    }
+}
+
 module.exports = {
     createUser,
     login,
+    getUser,
 }

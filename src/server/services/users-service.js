@@ -1,6 +1,7 @@
 const { uploadImage } = require('../utils/cloudinary');
 const User = require('../models/user');
 const bcrypt = require('bcrypt');
+const { use } = require('../routes/users');
 
 const defaultImageUrl = 'https://cdn3.iconfinder.com/data/icons/avatars-round-flat/33/avat-01-512.png';
 
@@ -32,7 +33,14 @@ const checkUser = async (email, password) => {
     return result;
 }
 
+const getUserById = async (id) => {
+    const user = await User.findById(id, 'firstName lastName email imageUrl _id');
+
+    return user;
+}
+
 module.exports = {
     createNewUser,
     checkUser,
+    getUserById,
 }
