@@ -17,6 +17,14 @@ const createNewAd = async (title, make, model, price, fuelType, transmission, di
     return ad;
 }
 
+const getAllAds = async () => {
+    const ads = await Ad.find();
+    
+    return ads;
+}
+
+
 module.exports = {
     createNewAd,
+    getAllAds,
 }

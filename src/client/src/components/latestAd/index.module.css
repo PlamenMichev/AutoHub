@@ -1,0 +1,11 @@
+.header-div {
+    display: flex;
+}
+
+.time {
+    float: right;
+}
+
+.image {
+    width: 100%;
+}

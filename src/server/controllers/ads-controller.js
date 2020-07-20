@@ -1,4 +1,4 @@
-const { createNewAd } = require('../services/ads-service');
+const { createNewAd, getAllAds } = require('../services/ads-service');
 
 const createAd = async (req, res) => {
     let {
@@ -38,6 +38,15 @@ const createAd = async (req, res) => {
     }
 }
 
+const getAds = async (req, res) => {
+    const ads = await getAllAds();
+
+    res.status(200)
+        .json(ads);
+}
+
+
 module.exports = {
     createAd,
+    getAds,
 }

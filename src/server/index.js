@@ -16,6 +16,7 @@ const { fetchMakes, fetchModels } = require('./utils/cron-jobs');
 
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
+app.use(cors());
 
 mongoose.connect(config.dbUrl, { useNewUrlParser: true, useUnifiedTopology: true } ,(err) => {
     if (err) {
@@ -38,8 +39,6 @@ app.get('*', (req, res) => {
             message: 'Not Found!',
         });
 })
-
-app.use(cors());
 
 cron.schedule("10 * * * 7", async function() {
     await fetchMakes();
