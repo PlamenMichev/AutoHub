@@ -9,3 +9,10 @@
 .image {
     width: 100%;
 }
+
+.card {
+    margin: 5px 0px 40px 0px;
+    padding-top: 15px;
+    padding-bottom: 15px;
+    border: solid gainsboro;
+}

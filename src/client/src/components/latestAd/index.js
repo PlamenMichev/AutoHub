@@ -7,15 +7,19 @@ const LatestAd = ({ adInfo }) => {
     const timeInDays = Math.ceil(timeSince / (1000 * 60 * 60 * 24));
     console.log(adInfo.photosUrls[0]);
     return (
-        <div>
-            <div>
-                {/* <img className={styles.image} src={adInfo.photosUrls[0][0]} /> */}
-            </div>
-            <div className={styles['header-div']}>
-                <h5 className='col-md-9'>Price: {adInfo.price}</h5>
-                <span className={styles.time + ' col-md-9'}>{timeInDays} {timeInDays == 1 ? 'day' : 'days'}</span>
+        <div className={styles.card + ' row'}>
+        <div className='col-md-3'>
+            <img className={styles.image} src={adInfo.photosUrls[0][0]} />
+        </div>
+        <div className='col-md-9'>
+            <div className={styles['header-div'] + ' row'}>
+                <h5 className='col-md-7'>Price: {adInfo.price}</h5>
+                <span className={styles.time + ' col-md-5'}>{timeInDays} {timeInDays == 1 ? 'day' : 'days'} ago</span>
             </div>
             <h6>{adInfo.title}</h6>
+            <h6>Type: {adInfo.type}</h6>
+            <span>{adInfo.description.toString().substr(0, 25)}...</span>
+        </div>
         </div>
     )
 }
