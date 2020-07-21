@@ -12,7 +12,7 @@ class LatestAds extends Component {
     }
 
     getLatestAds = async () => {
-        const promise = await fetch('http://localhost:3001/ads/getAll');
+        const promise = await fetch('http://localhost:3001/ads/getLatest');
         const ads = await promise.json();
 
         this.setState({ ads });
@@ -34,7 +34,7 @@ class LatestAds extends Component {
                 price: [ad.price],
                 createdOn: [ad.createdOn],
                 type: [ad.type],
-                photosUrls: [ad.photosUrls],
+                photosUrls: [ad.photosUrls[0]],
             }
 
             return (

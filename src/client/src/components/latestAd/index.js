@@ -5,11 +5,10 @@ const LatestAd = ({ adInfo }) => {
     adInfo.createdOn = new Date(adInfo.createdOn); 
     const timeSince = Math.abs(new Date() - adInfo.createdOn);
     const timeInDays = Math.ceil(timeSince / (1000 * 60 * 60 * 24));
-    console.log(adInfo.photosUrls[0]);
     return (
         <div className={styles.card + ' row'}>
         <div className='col-md-3'>
-            <img className={styles.image} src={adInfo.photosUrls[0][0]} />
+            <img className={styles.image} src={adInfo.photosUrls[0]} />
         </div>
         <div className='col-md-9'>
             <div className={styles['header-div'] + ' row'}>
