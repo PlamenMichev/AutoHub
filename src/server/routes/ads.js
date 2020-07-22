@@ -8,6 +8,6 @@ router.post('/create', multer.array('photos', 15), createAd);
 
 router.get('/getAll', getAds);
 
-router.get('/getLatest', getAds);
+router.get('/getLatest', getLatest);
 
 module.exports = router;

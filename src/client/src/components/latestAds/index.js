@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import styles from './index.module.css';
 import LatestAd from '../latestAd';
+import Spinner from '../spinner';
 
 class LatestAds extends Component {
     constructor(props) {
@@ -8,6 +9,7 @@ class LatestAds extends Component {
 
         this.state = {
             ads: [],
+            loading: true,
         }
     }
 
@@ -15,7 +17,11 @@ class LatestAds extends Component {
         const promise = await fetch('http://localhost:3001/ads/getLatest');
         const ads = await promise.json();
 
-        this.setState({ ads });
+        if (ads.length == 0) {
+            return <h2>No Latest Ads</h2>
+        }
+
+        this.setState({ ads, loading: false });
     }
 
     componentDidMount() {
@@ -46,9 +52,11 @@ class LatestAds extends Component {
     }
 
     render() {
+        const { loading, ads } = this.state;
         return (
             <div className={styles.wrapper}>
-                {this.renderLatestAds()}
+                <h2 className={styles.header}>Laterst Ads:</h2>
+                { loading ? <Spinner /> : this.renderLatestAds() }
             </div>
         );
     }

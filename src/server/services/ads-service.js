@@ -3,7 +3,6 @@ const Ad = require('../models/ad');
 
 const createNewAd = async (title, make, model, price, fuelType, transmission, distanceRun, manufactureDate, horsepower, color, description, 
     type, adPlacer, photos) => {
-    
     const photosUrls = [];
     for (const photo of photos) {
         const photoUrl = await uploadImage(photo);
@@ -25,8 +24,8 @@ const getAllAds = async () => {
 
 const getLatestAds = async () => {
     const ads = await Ad.find()
-        .sort('-createdOn')
-        .limit(4);
+        .sort({ createdOn: -1 })
+        .limit(3);
 
     return ads;
 }

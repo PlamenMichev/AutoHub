@@ -1,8 +1,8 @@
 import React from 'react';
 import './app.css';
-import Header from './components/header';
-import Footer from './components/footer';
-import LatestAds from './components/latestAds';
+import Header from '../components/header';
+import Footer from '../components/footer';
+import LatestAds from '../components/latestAds';
 
 function App() {
   return (
