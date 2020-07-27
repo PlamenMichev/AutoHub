@@ -7,7 +7,9 @@ function PageLayout(props) {
   return (
     <div className="App">
       <Header />
-        {props.children}
+        <div className={styles.container}>
+          {props.children}
+        </div>
       <Footer />
     </div>
   );

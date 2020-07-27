@@ -1,0 +1,15 @@
+.form {
+    text-align: center;
+    margin-top: 20px;
+    background-color: gray;
+    width: 32%;
+    margin: auto;
+    border-radius: 20px;
+    padding: 10px;
+}
+
+.submit-button {
+    display: block;
+    margin: auto;
+    margin-top: 10px;
+}

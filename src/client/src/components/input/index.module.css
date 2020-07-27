@@ -1,0 +1,9 @@
+.group {
+    width: 70%;
+    display: inline-block;
+}
+
+.label {
+    color: honeydew;
+    font-size: 1.5rem;
+}
