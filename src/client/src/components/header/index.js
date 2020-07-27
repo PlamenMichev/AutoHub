@@ -7,9 +7,9 @@ const Header = () => {
         <Navbar bg="primary" variant="dark">
             <Navbar.Brand as={Link} to="/">Navbar</Navbar.Brand>
             <Nav className="ml-auto">
-                    <Nav.Link as={Link} to="/create" className='active'>Create Ad</Nav.Link>
                     <Nav.Link as={Link} to="/login" className='active'>Login</Nav.Link>
                     <Nav.Link as={Link} to="/register" className='active'>Register</Nav.Link>
+                    <Nav.Link as={Link} to="/createAd" className='active'>Create Ad</Nav.Link>
             </Nav>
         </Navbar>
     );

@@ -1,0 +1,11 @@
+.group {
+    margin-top: 20px;
+    width: 80%;
+    display: inline-block;
+    margin: auto;
+}
+
+.label {
+    color: honeydew;
+    font-size: 1.5rem;
+}

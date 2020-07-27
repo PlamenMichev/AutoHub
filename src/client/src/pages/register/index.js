@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import PageLayout from '../../components/page-layout';
 import PageHeader from '../../components/page-header';
 import Input from '../../components/input';
+import FileInput from '../../components/file-input';
 import { Form } from 'react-bootstrap';
 import styles from '../common/login-register.module.css';
 import { Button } from 'react-bootstrap';
@@ -40,7 +41,7 @@ class RegisterPage extends Component {
 
         return (
             <PageLayout>
-                <PageHeader title='Login Page'/>
+                <PageHeader title='Register Page'/>
                 <Form className={styles.form}>
                     <Input label='Email'
                            placeholder='Your email...'
@@ -84,12 +85,11 @@ class RegisterPage extends Component {
                            type='text'
                            value={phoneNumber}/>
 
-                    <Input label='Profile Picture (Optional)'
-                           placeholder='Your profile picture...'
+                    <FileInput label='Profile Picture (Optional)'
                            id='profilePicture'
                            onChange = {(e) => this.onChange(e, 'profilePicture')}
-                           type='file'
-                           value={profilePicture}/>
+                           value={profilePicture}
+                           />
     
                     <Button className={styles['submit-button']}>Submit</Button>
                 </Form>

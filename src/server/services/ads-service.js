@@ -3,11 +3,8 @@ const Ad = require('../models/ad');
 
 const createNewAd = async (title, make, model, price, fuelType, transmission, distanceRun, manufactureDate, horsepower, color, description, 
     type, adPlacer, photos) => {
-    const photosUrls = [];
-    for (const photo of photos) {
-        const photoUrl = await uploadImage(photo);
-        photosUrls.push(photoUrl);
-    }
+
+    const photosUrls = await Promise.all(photos.map(async (p) => await uploadImage(p)));
 
     const currentDate = new Date();
     const ad = await new Ad({ title, make, model, price, fuelType, transmission, distanceRun, manufactureDate, horsepower, color, description, 
