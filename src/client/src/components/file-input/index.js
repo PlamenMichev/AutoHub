@@ -8,7 +8,7 @@ const FileInput = ({ id, label, onChange, value, multiple}) => {
             <Form.Label className={styles.label} htmlFor={id}>{label}: </Form.Label>
             <Form.File 
                 id={id}
-                label='Add file here...'
+                label='Add files...'
                 onChange={onChange}
                 value={value}
                 multiple={multiple}

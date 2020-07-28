@@ -2,16 +2,15 @@
     text-align: center;
     margin-top: 20px;
     background-color: gray;
-    width: 50%;
+    width: 32%;
     margin: auto;
     border-radius: 20px;
     padding: 10px;
+    overflow: hidden;
 }
 
-.input-file {
+.submit-button {
+    display: block;
     margin: auto;
-}
-
-.page-nav {
-    justify-content: center;
+    margin-top: 10px;
 }

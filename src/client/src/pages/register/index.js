@@ -3,9 +3,8 @@ import PageLayout from '../../components/page-layout';
 import PageHeader from '../../components/page-header';
 import Input from '../../components/input';
 import FileInput from '../../components/file-input';
-import { Form } from 'react-bootstrap';
-import styles from '../common/login-register.module.css';
-import { Button } from 'react-bootstrap';
+import styles from '../common/form.module.css';
+import { Button, Form } from 'react-bootstrap';
 
 class RegisterPage extends Component {
     constructor(props) {
