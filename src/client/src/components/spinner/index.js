@@ -5,8 +5,8 @@ import styles from './index.module.css'
 const Spinner = () => {
     return (
     <center>
-        <BootstrapSpinner className={styles.spinner} animation="border" role="status">
-            <span className="sr-only">Loading...</span>
+        <BootstrapSpinner className={styles.spinner} animation='border' role='status' variant='primary'>
+            <span className='sr-only'>Loading...</span>
         </BootstrapSpinner>
     </center>)
 }

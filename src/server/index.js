@@ -21,7 +21,6 @@ app.use(cors());
 
 mongoose.connect(config.dbUrl, { useNewUrlParser: true, useUnifiedTopology: true } ,(err) => {
     if (err) {
-        console.log('pass', config.dbUrl)
         throw err;
     }
 

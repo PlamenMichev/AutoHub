@@ -2,8 +2,10 @@ import React, { Component } from 'react';
 import api from '../../services/api'
 import styles from './index.module.css';
 import SelectInput from '../select-input';
+import Input from '../input';
 import { Row, Col, Form } from 'react-bootstrap';
 import SubmitButton from '../submit-button';
+import url from '../../utils/url';
 
 class SearchForm extends Component {
     constructor(props) {
@@ -12,6 +14,8 @@ class SearchForm extends Component {
         this.state = {
             make: '',
             model: '',
+            minYear: '',
+            maxYear: '',
             makes: [],
             models: [],
         }
@@ -41,10 +45,24 @@ class SearchForm extends Component {
         this.setState(newState);
     }
 
+    createUrl = () => {
+        const terms = {
+            make: this.state.make,
+            model: this.state.model,
+            minYear: this.state.minYear,
+            maxYear: this.state.maxYear,
+        };
+
+        const params = url.createGetUrl(terms);
+        const requestUrl = `http://localhost:3001/search?${params}`;
+    }
+
     render () {
         const {
             make,
             model,
+            minYear,
+            maxYear,
             makes,
             models,
         } = this.state;
@@ -73,7 +91,27 @@ class SearchForm extends Component {
                         options={models}/>
                 </Col>
             </Row>
-            <SubmitButton title="Search"/>
+
+            <Row>
+                <Col className={styles['col-center']}>
+                    <Input label='From'
+                        id='minYear'
+                        onChange = {(e) => { this.onChange(e, 'minYear'); }}
+                        value={minYear}
+                        placeholder={2020}
+                        type='number'/>
+                </Col>
+                <Col className={styles['col-center']}>
+                    <Input label='To'
+                            id='maxYear'
+                            onChange = {(e) => { this.onChange(e, 'maxYear'); }}
+                            value={maxYear}
+                            placeholder={2020}
+                            type='number'/>
+                </Col>
+            </Row>
+
+            <SubmitButton onClick={this.createUrl} title="Search"/>
         </Form>)
     }
 }

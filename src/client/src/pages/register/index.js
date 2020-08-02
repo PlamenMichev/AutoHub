@@ -19,6 +19,7 @@ class RegisterPage extends Component {
             lastName: '',
             phoneNumber: '',
             profilePicture: '',
+            error: '',
         }
     }
 
@@ -26,6 +27,43 @@ class RegisterPage extends Component {
         const newState = {};
         newState[type] = event.target.value;
         this.setState(newState);
+    }
+
+    onFileChange = (event, type) => {
+        const newState = {};
+        newState[type] = event.target.files[0];
+        this.setState(newState);
+    }
+
+    submitForm = async (event) => {
+        event.preventDefault();
+        const data = {
+            email: this.state.email,
+            password: this.state.password,
+            firstName: this.state.firstName,
+            lastName: this.state.lastName,
+            phoneNumber: this.state.phoneNumber,
+            profilePicture: this.state.profilePicture,
+        }
+
+        const formData = new FormData();
+        for (const key in data) {
+            formData.append(key, data[key]);
+        }
+
+        const promise = await fetch('http://localhost:3001/users/register', {
+            method: 'POST',
+            body: formData,
+        });
+
+        const response = await promise.json();
+
+        if (promise.status > 300) {
+            this.setState({error: await response.message})
+        } else {
+            document.cookie = `auth=${response.authentication}`;
+            this.props.history.push('/');
+        }
     }
 
     render() {
@@ -36,18 +74,19 @@ class RegisterPage extends Component {
             firstName,
             lastName,
             phoneNumber,
-            profilePicture,
+            error,
         } = this.state;
 
         return (
             <PageLayout>
                 <PageHeader title='Register Page'/>
-                <Form className={styles.form}>
+                <p>{error}</p>
+                <Form className={styles.form} onSubmit={this.submitForm}>
                     <Input label='Email'
                            placeholder='Your email...'
                            id='email'
                            onChange = {(e) => this.onChange(e, 'email')}
-                           type='text'
+                           type='email'
                            value={email}/>
 
                     <Input label='Password'
@@ -87,8 +126,7 @@ class RegisterPage extends Component {
 
                     <FileInput label='Profile Picture (Optional)'
                            id='profilePicture'
-                           onChange = {(e) => this.onChange(e, 'profilePicture')}
-                           value={profilePicture}
+                           onChange = {(e) => this.onFileChange(e, 'profilePicture')}
                            />
     
                     <SubmitButton title="Register"/>

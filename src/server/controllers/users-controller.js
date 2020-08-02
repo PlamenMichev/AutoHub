@@ -1,36 +1,35 @@
 const env = process.env.NODE_ENV || "development";
 const { generateToken } = require('../utils/auth');
 const { createNewUser, checkUser, getUserById } = require('../services/users-service');
-const { use } = require('../routes/users');
 const config = require('../config/config')[env];
 
 const createUser = async (req, res) => {
     try {
-
         const email = req.body.email;
         const password = req.body.password;
         const firstName = req.body.firstName;
         const lastName = req.body.lastName;
+        
         if (!password || password.length < 5) {
-            res.status(400).json({
+            return res.status(400).json({
                 message: 'Password is too short!', 
             });
         }
 
         if (!email) {
-            res.status(400).json({
+            return res.status(400).json({
                 message: 'Email is required!', 
             });
         }
 
         if (!firstName) {
-            res.status(400).json({
+            return res.status(400).json({
                 message: 'First name is too short!', 
             });
         }
 
         if (!lastName) {
-            res.status(400).json({
+            return res.status(400).json({
                 message: 'Last name is too short!', 
             });
         }
