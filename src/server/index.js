@@ -5,6 +5,7 @@ const usersRouter = require('./routes/users');
 const makesRouter = require('./routes/makes');
 const modelsRouter = require('./routes/models');
 const adsRouter = require('./routes/ads');
+const searchRouter = require('./routes/search');
 const cron = require("node-cron");
 
 const cors = require('cors');
@@ -31,6 +32,7 @@ app.use('/users', usersRouter);
 app.use('/makes', makesRouter);
 app.use('/models', modelsRouter);
 app.use('/ads', adsRouter);
+app.use('/search', searchRouter);
 
 app.get('*', (req, res) => {
     res

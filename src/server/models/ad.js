@@ -31,7 +31,7 @@ const adSchema = new mongooose.Schema({
     },
     distanceRun: {
         type: Number,
-        required: true,
+        required: false,
     },
     manufactureDate: {
         type: Date,
@@ -39,11 +39,11 @@ const adSchema = new mongooose.Schema({
     },
     horsepower: {
         type: Number,
-        required: true,
+        required: false,
     },
     color: {
         type: String,
-        required: true,
+        required: false,
     },
     description: {
         type: String,
@@ -55,7 +55,7 @@ const adSchema = new mongooose.Schema({
     },
     type: {
         type: String,
-        required: true,
+        required: false,
     },
     adPlacer: {
         type: 'ObjectId',
