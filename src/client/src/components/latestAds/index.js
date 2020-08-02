@@ -17,7 +17,7 @@ class LatestAds extends Component {
         const promise = await fetch('http://localhost:3001/ads/getLatest');
         const ads = await promise.json();
 
-        if (ads.length == 0) {
+        if (ads.length === 0) {
             return <h2>No Latest Ads</h2>
         }
 
@@ -52,7 +52,7 @@ class LatestAds extends Component {
     }
 
     render() {
-        const { loading, ads } = this.state;
+        const { loading } = this.state;
         return (
             <div className={styles.wrapper}>
                 <h2 className={styles.header}>Laterst Ads:</h2>

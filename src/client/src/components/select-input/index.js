@@ -2,7 +2,7 @@ import React from 'react';
 import { Form } from 'react-bootstrap';
 import styles from './index.module.css';
 
-const SelectInput = ({ id, label, onChange, value, options}) => {
+const SelectInput = ({ id, label, onChange, value, options, defaultValue = ''}) => {
     return (
         <Form.Group className={styles.group}>
             <Form.Label className={styles.label} htmlFor={id}>{label}: </Form.Label>

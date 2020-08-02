@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
-import Input from '../../components/input';
-import SelectInput from '../../components/select-input';
-import FileInput from '../../components/file-input';
+import api from '../../services/api';
+import Input from '../input';
+import SelectInput from '../select-input';
+import FileInput from '../file-input';
 import styles from './index.module.css';
 import SwitchButton from '../switch-button';
 import { Row, Col, Form } from 'react-bootstrap';
@@ -29,24 +30,13 @@ class FirstAdForm extends Component {
     }
 
     getMakes = async () => {
-        const promise = await fetch('http://localhost:3001/makes/all');
-        if (promise.status != 200) {
-            this.setState({makes: []});
-        } else {
-            const makes = await promise.json();
-            this.setState({makes});
-        }
+        const makes = await api.getMakes();
+        this.setState({makes});
     }
 
     getModels = async (make) => {
-        const promise = await fetch(`http://localhost:3001/models?make=${make}`);
-
-        if (promise.status != 200) {
-            this.setState({models: []});
-        } else {
-            const models = await promise.json();
-            this.setState({models});
-        }
+        const models = await api.getModels(make);
+        this.setState({models});
     }
 
     componentDidMount() {
@@ -103,11 +93,7 @@ class FirstAdForm extends Component {
                                 onChange = {(e) => { 
                                     const makeValue = e.target.value;
                                     this.onChange(e, 'make');
-                                    if (makeValue) {
-                                        this.getModels(makeValue);
-                                    } else {
-                                        this.setState({models: []});
-                                    }
+                                    this.getModels(makeValue);
                                 }}
                                 value={make}
                                 options={makes}/>

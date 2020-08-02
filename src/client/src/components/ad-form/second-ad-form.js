@@ -1,11 +1,10 @@
 import React, { Component } from 'react';
-import Input from '../../components/input';
-import SelectInput from '../../components/select-input';
-import TextareaInput from '../../components/textarea-input';
-import styles from '../../pages/common/form.module.css';
-import specificStyles from './index.module.css';
+import Input from '../input';
+import SelectInput from '../select-input';
+import TextareaInput from '../textarea-input';
+import styles from './index.module.css';
 import SwitchButton from '../switch-button';
-import { Button, Row, Col, Form, Nav } from 'react-bootstrap';
+import { Row, Col, Form } from 'react-bootstrap';
 
 class SecondAdForm extends Component {
     constructor(props) {
@@ -40,10 +39,10 @@ class SecondAdForm extends Component {
         } = this.state;
 
         return (
-                <Form className={specificStyles.form}>
+                <Form className={styles.form}>
 
                     <Row>
-                        <Col>
+                        <Col className={styles['col-center']}>
                             <Input label='Distance Run'
                                     id='distanceRun'
                                     onChange = {(e) => this.onChange(e, 'distanceRun')}
@@ -51,7 +50,7 @@ class SecondAdForm extends Component {
                                     value={distanceRun}
                                     />
                         </Col>
-                        <Col>
+                        <Col className={styles['col-center']}>
                             <Input label='Price'
                                     id='price'
                                     onChange = {(e) => this.onChange(e, 'price')}
@@ -62,7 +61,7 @@ class SecondAdForm extends Component {
                     </Row>
 
                     <Row>
-                        <Col>
+                        <Col className={styles['col-center']}>
                             <Input label='Horsepower'
                                     id='horsepower'
                                     onChange = {(e) => this.onChange(e, 'horsepower')}
@@ -70,7 +69,7 @@ class SecondAdForm extends Component {
                                     value={horsepower}
                                     />
                         </Col>
-                        <Col>
+                        <Col className={styles['col-center']}>
                             <Input label='Color'
                                     id='color'
                                     onChange = {(e) => this.onChange(e, 'color')}
@@ -81,7 +80,7 @@ class SecondAdForm extends Component {
                     </Row>
 
                     <Row>
-                        <Col>
+                        <Col className={styles['col-center']}>
                             <TextareaInput label='Description'
                                     id='description'
                                     onChange = {(e) => this.onChange(e, 'description')}
@@ -90,7 +89,7 @@ class SecondAdForm extends Component {
                                     rows={4}
                                     />
                         </Col>
-                        <Col>
+                        <Col className={styles['col-center']}>
                             <SelectInput label='Type'
                                     id='type'
                                     onChange = {(e) => this.onChange(e, 'type')}

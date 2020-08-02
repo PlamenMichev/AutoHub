@@ -1,0 +1,18 @@
+.form {
+    margin: 20px;
+    width: 65%;
+    background-color: gray;
+    border-radius: 20px;
+    padding: 10px;
+    overflow: hidden;
+    text-align: center;
+}
+
+.input {
+    width: 40%;
+}
+
+.header {
+    text-align: center;
+    color: honeydew;
+}

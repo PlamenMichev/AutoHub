@@ -3,7 +3,8 @@ import PageLayout from '../../components/page-layout';
 import PageHeader from '../../components/page-header';
 import Input from '../../components/input';
 import styles from '../common/form.module.css';
-import { Button, Form } from 'react-bootstrap';
+import { Form } from 'react-bootstrap';
+import SubmitButton from '../../components/submit-button';
 
 class LoginPage extends Component {
     constructor(props) {
@@ -45,7 +46,7 @@ class LoginPage extends Component {
                            type='password'
                            value={password}/>
     
-                    <Button className={styles['submit-button']}>Submit</Button>
+                    <SubmitButton title="Login"/>
                 </Form>
             </PageLayout>
             )

@@ -4,7 +4,8 @@ import PageHeader from '../../components/page-header';
 import Input from '../../components/input';
 import FileInput from '../../components/file-input';
 import styles from '../common/form.module.css';
-import { Button, Form } from 'react-bootstrap';
+import { Form } from 'react-bootstrap';
+import SubmitButton from '../../components/submit-button';
 
 class RegisterPage extends Component {
     constructor(props) {
@@ -90,7 +91,7 @@ class RegisterPage extends Component {
                            value={profilePicture}
                            />
     
-                    <Button className={styles['submit-button']}>Submit</Button>
+                    <SubmitButton title="Register"/>
                 </Form>
             </PageLayout>
             )

@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
 import PageLayout from '../../components/page-layout';
 import PageHeader from '../../components/page-header';
-import FirstAdForm from '../../components/first-ad-form';
-import SecondAdForm from '../../components/second-ad-form';
+import FirstAdForm from '../../components/ad-form/first-ad-form';
+import SecondAdForm from '../../components/ad-form/second-ad-form';
 
 class CreateAd extends Component {
     constructor(props) {
@@ -18,8 +18,8 @@ class CreateAd extends Component {
         return (
             <PageLayout>
                 <PageHeader title='Create New Ad'/>
-                {/* {<FirstAdForm />} */}
-                <SecondAdForm />
+
+                {this.state.form === 1 ? <FirstAdForm /> : <SecondAdForm />}
                
             </PageLayout>
             )
