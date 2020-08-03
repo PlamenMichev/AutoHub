@@ -17,7 +17,9 @@ const { fetchMakes, fetchModels } = require('./utils/cron-jobs');
 
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
-app.use(cors());
+app.use(cors({
+    exposedHeaders: config.auth,
+}));
 
 mongoose.connect(config.dbUrl, { useNewUrlParser: true, useUnifiedTopology: true } ,(err) => {
     if (err) {

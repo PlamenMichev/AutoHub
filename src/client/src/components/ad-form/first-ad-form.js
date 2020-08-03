@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
-import api from '../../services/api';
+import makesService from '../../services/api/makes';
+import modelsService from '../../services/api/models';
 import Input from '../input';
 import SelectInput from '../select-input';
 import FileInput from '../file-input';
@@ -30,12 +31,12 @@ class FirstAdForm extends Component {
     }
 
     getMakes = async () => {
-        const makes = await api.getMakes();
+        const makes = await makesService.getMakes();
         this.setState({makes});
     }
 
     getModels = async (make) => {
-        const models = await api.getModels(make);
+        const models = await modelsService.getModels(make);
         this.setState({models});
     }
 

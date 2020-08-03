@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
-import api from '../../services/api'
+import makesService from '../../services/api/makes';
+import modelsService from '../../services/api/models';
 import styles from './index.module.css';
 import SelectInput from '../select-input';
 import Input from '../input';
@@ -22,13 +23,13 @@ class SearchForm extends Component {
     }
 
     getMakes = async () => {
-        const makes = await api.getMakes();
+        const makes = await makesService.getMakes();
         makes.unshift('all');
         this.setState({makes});
     }
 
     getModels = async (make) => {
-        const models = await api.getModels(make);
+        const models = await modelsService.getModels(make);
         models.unshift('all');
         this.setState({model: ''});
         this.setState({models});

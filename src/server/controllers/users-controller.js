@@ -1,4 +1,4 @@
-const env = process.env.NODE_ENV || "development";
+const env = process.env.NODE_ENV || 'development';
 const { generateToken } = require('../utils/auth');
 const { createNewUser, checkUser, getUserById } = require('../services/users-service');
 const config = require('../config/config')[env];
@@ -40,11 +40,12 @@ const createUser = async (req, res) => {
             firstName, 
             lastName,
             req.file);
-
+            
         const token = await generateToken(newUser._id, newUser.firstName);
-        res.status(200).json({
-            [config.auth]: token, 
-        });
+        res
+            .status(200)
+            .header(config.auth, token)
+            .send(newUser);
     } catch (error) {
         res.status(400).json({
             message: error.message, 
@@ -56,9 +57,11 @@ const login = async (req, res) => {
     const user = await checkUser(req.body.email, req.body.password);
     if (user) {
         const token = await generateToken(user._id, user.firstName);
-        res.status(200).json({
-            [config.auth]: token, 
-        });
+
+        res
+            .status(200)
+            .header(config.auth, token)
+            .send(user);
     } else {
         res.status(400).json({
             message: 'Invalid email or password!', 

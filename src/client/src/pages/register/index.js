@@ -6,6 +6,7 @@ import FileInput from '../../components/file-input';
 import styles from '../common/form.module.css';
 import { Form } from 'react-bootstrap';
 import SubmitButton from '../../components/submit-button';
+import UserContext from '../../Context';
 
 class RegisterPage extends Component {
     constructor(props) {
@@ -22,6 +23,8 @@ class RegisterPage extends Component {
             error: '',
         }
     }
+
+    static contextType = UserContext;
 
     onChange = (event, type) => {
         const newState = {};
@@ -61,7 +64,9 @@ class RegisterPage extends Component {
         if (promise.status > 300) {
             this.setState({error: await response.message})
         } else {
-            document.cookie = `auth=${response.authentication}`;
+            const authToken = promise.headers.get('auth');
+            document.cookie = `auth=${authToken}`;
+            // this.context.logIn();
             this.props.history.push('/');
         }
     }

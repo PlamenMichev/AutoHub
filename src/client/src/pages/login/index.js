@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import PageLayout from '../../components/page-layout';
 import PageHeader from '../../components/page-header';
+import authService from '../../services/api/auth';
 import Input from '../../components/input';
 import styles from '../common/form.module.css';
 import { Form } from 'react-bootstrap';
@@ -13,6 +14,7 @@ class LoginPage extends Component {
         this.state = {
             email: '',
             password: '',
+            error: '',
         }
     }
 
@@ -22,16 +24,38 @@ class LoginPage extends Component {
         this.setState(newState);
     }
 
+    submitForm = async (event) => {
+        event.preventDefault();
+        const data = {
+            email: this.state.email,
+            password: this.state.password,
+        }
+
+        await authService.login('http://localhost:3001/users/login', 
+            data,
+            () => {
+                // this.context.logIn();
+                this.props.history.push('/');
+            },
+            async (e) => {
+                this.setState({error: e});
+            })
+
+        
+    }
+
     render() {
         const {
             email,
-            password
+            password,
+            error,
         } = this.state;
 
         return (
             <PageLayout>
                 <PageHeader title='Login Page'/>
-                <Form className={styles.form}>
+                <div>{error}</div>
+                <Form className={styles.form} onSubmit={this.submitForm}>
                     <Input label='Email'
                            placeholder='Your email...'
                            id='email'
