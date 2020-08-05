@@ -2,6 +2,7 @@ const env = process.env.NODE_ENV || 'development';
 const { generateToken } = require('../utils/auth');
 const { createNewUser, checkUser, getUserById } = require('../services/users-service');
 const config = require('../config/config')[env];
+const jwt = require('jsonwebtoken');
 
 const createUser = async (req, res) => {
     try {
@@ -9,6 +10,7 @@ const createUser = async (req, res) => {
         const password = req.body.password;
         const firstName = req.body.firstName;
         const lastName = req.body.lastName;
+        const phoneNumber = req.body.phoneNumber;
         
         if (!password || password.length < 5) {
             return res.status(400).json({
@@ -37,8 +39,8 @@ const createUser = async (req, res) => {
         const newUser = await createNewUser(email, 
             password, 
             firstName, 
-            firstName, 
-            lastName,
+            lastName, 
+            phoneNumber,
             req.file);
             
         const token = await generateToken(newUser._id, newUser.firstName);
@@ -85,8 +87,28 @@ const getUser = async (req, res) => {
     }
 }
 
+const verifyUser = async (req, res) => {
+    const token = req.headers[config.auth];
+    try {
+        const decodedToken = jwt.verify(token, process.env.JWT_KEY);
+
+        console.log('hui', decodedToken);
+        return res
+                .send({
+                    status: true,
+                    user: {
+                        _id: decodedToken.id,
+                        firstName: decodedToken.firstName,
+                    }
+                });
+    } catch (error) {
+        res.send({status: false});
+    }
+}
+
 module.exports = {
     createUser,
     login,
     getUser,
+    verifyUser,
 }

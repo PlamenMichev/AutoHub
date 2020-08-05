@@ -7,6 +7,7 @@ import Input from '../input';
 import { Row, Col, Form } from 'react-bootstrap';
 import SubmitButton from '../submit-button';
 import url from '../../utils/url';
+import UserContext from '../../Context';
 
 class SearchForm extends Component {
     constructor(props) {
@@ -21,6 +22,8 @@ class SearchForm extends Component {
             models: [],
         }
     }
+
+    static contextType = UserContext;
 
     getMakes = async () => {
         const makes = await makesService.getMakes();
@@ -46,7 +49,8 @@ class SearchForm extends Component {
         this.setState(newState);
     }
 
-    createUrl = () => {
+    createUrl = (event) => {
+        event.preventDefault();
         const terms = {
             make: this.state.make,
             model: this.state.model,

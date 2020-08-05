@@ -6,6 +6,7 @@ import Input from '../../components/input';
 import styles from '../common/form.module.css';
 import { Form } from 'react-bootstrap';
 import SubmitButton from '../../components/submit-button';
+import UserContext from '../../Context';
 
 class LoginPage extends Component {
     constructor(props) {
@@ -17,6 +18,8 @@ class LoginPage extends Component {
             error: '',
         }
     }
+
+    static contextType = UserContext;
 
     onChange = (event, type) => {
         const newState = {};
@@ -31,10 +34,9 @@ class LoginPage extends Component {
             password: this.state.password,
         }
 
-        await authService.login('http://localhost:3001/users/login', 
-            data,
-            () => {
-                // this.context.logIn();
+        await authService.login(data,
+            (user) => {
+                this.context.logIn(user);
                 this.props.history.push('/');
             },
             async (e) => {

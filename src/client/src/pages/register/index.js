@@ -7,6 +7,7 @@ import styles from '../common/form.module.css';
 import { Form } from 'react-bootstrap';
 import SubmitButton from '../../components/submit-button';
 import UserContext from '../../Context';
+import authService from '../../services/api/auth';
 
 class RegisterPage extends Component {
     constructor(props) {
@@ -49,26 +50,14 @@ class RegisterPage extends Component {
             profilePicture: this.state.profilePicture,
         }
 
-        const formData = new FormData();
-        for (const key in data) {
-            formData.append(key, data[key]);
-        }
-
-        const promise = await fetch('http://localhost:3001/users/register', {
-            method: 'POST',
-            body: formData,
-        });
-
-        const response = await promise.json();
-
-        if (promise.status > 300) {
-            this.setState({error: await response.message})
-        } else {
-            const authToken = promise.headers.get('auth');
-            document.cookie = `auth=${authToken}`;
-            // this.context.logIn();
+        await authService.register(data,
+        (user) => {
+            this.context.logIn(user);
             this.props.history.push('/');
-        }
+        },
+        (error) => {
+            this.setState({error})
+        })
     }
 
     render() {

@@ -1,5 +1,5 @@
-const login = async (url, body, onSuccess, onFailure) => {
-    const promise = await fetch(url, {
+const login = async (body, onSuccess, onFailure) => {
+    const promise = await fetch('http://localhost:3001/users/login', {
             method: 'POST',
             body: JSON.stringify(body),
             headers: {
@@ -7,7 +7,6 @@ const login = async (url, body, onSuccess, onFailure) => {
             }
         });
 
-        console.log('promise', promise);
         const response = await promise.json();
 
         if (promise.status > 300) {
@@ -16,14 +15,42 @@ const login = async (url, body, onSuccess, onFailure) => {
         } else {
             const authToken = promise.headers.get('auth');
             document.cookie = `auth=${authToken}`;
-            onSuccess();
+            const user = {
+                firstName: response.firstName,
+                id: response._id,
+            }
+            onSuccess(user);
         }
 }
 
-const register = (url, body, onSuccess, onFailure) => {
-    
+const register = async (body, onSuccess, onFailure) => {
+    const formData = new FormData();
+        for (const key in body) {
+            formData.append(key, body[key]);
+        }
+
+        const promise = await fetch('http://localhost:3001/users/register', {
+            method: 'POST',
+            body: formData,
+        });
+
+        const response = await promise.json();
+
+        if (promise.status > 300) {
+            const error = await response.message;
+            onFailure(error);
+        } else {
+            const authToken = promise.headers.get('auth');
+            document.cookie = `auth=${authToken}`;
+            const user = {
+                firstName: response.firstName,
+                id: response._id,
+            }
+            onSuccess(user);
+        }
 }
 
 export default {
     login,
+    register,
 }

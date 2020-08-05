@@ -6,7 +6,7 @@ const generateToken = async (id, firstName) => {
     const token = await jwt.sign({
         id,
         firstName,
-    }, process.env.JWT_KEY);
+    }, process.env.JWT_KEY, {expiresIn: '72h'});
 
     return token;
 }

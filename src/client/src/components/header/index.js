@@ -1,18 +1,44 @@
-import React from 'react';
+import React, { Component } from 'react';
 import { Navbar, Nav } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
+import UserContext from '../../Context';
+import { withRouter } from 'react-router-dom';
 
-const Header = () => {
-    return (
-        <Navbar bg="primary" variant="dark">
-            <Navbar.Brand as={Link} to="/">Navbar</Navbar.Brand>
-            <Nav className="ml-auto">
-                    <Nav.Link as={Link} to="/login" className='active'>Login</Nav.Link>
-                    <Nav.Link as={Link} to="/register" className='active'>Register</Nav.Link>
-                    <Nav.Link as={Link} to="/createAd" className='active'>Create Ad</Nav.Link>
-            </Nav>
-        </Navbar>
-    );
+class Header extends Component {
+    static contextType = UserContext;
+
+    logOut = () => {
+        this.context.logOut();
+        this.props.history.push('/');
+    }
+
+    render() {
+        const {
+            loggedIn,
+            user
+        } = this.context;
+        const profileUrl = `/profile/${user && user.id}`;
+
+        return (
+            <Navbar bg="primary" variant="dark">
+                <Navbar.Brand as={Link} to="/">Navbar</Navbar.Brand>
+                <Nav className="ml-auto">
+                        {loggedIn 
+                        ? 
+                        <>
+                            <Nav.Link as={Link} to="/createAd" className='active'>Create Ad</Nav.Link>
+                            <Nav.Link as={Link} to={profileUrl} className='active'>Hello, {user.firstName}</Nav.Link> 
+                            <Nav.Link as={Link} onClick={this.logOut} className='active'>Logout</Nav.Link>
+                        </>
+                        : 
+                        <>
+                            <Nav.Link as={Link} to="/login" className='active'>Login</Nav.Link>
+                            <Nav.Link as={Link} to="/register" className='active'>Register</Nav.Link>
+                        </>}
+                </Nav>
+            </Navbar>
+        );
+    }
 }
 
-export default Header;
+export default withRouter(Header);
