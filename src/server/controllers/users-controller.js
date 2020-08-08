@@ -72,8 +72,6 @@ const login = async (req, res) => {
 }
 
 const getUser = async (req, res) => {
-    console.log(req.params);
-    console.log(req.query);
     const user = await getUserById(req.params.id);
 
     if (user) {
@@ -92,7 +90,6 @@ const verifyUser = async (req, res) => {
     try {
         const decodedToken = jwt.verify(token, process.env.JWT_KEY);
 
-        console.log('hui', decodedToken);
         return res
                 .send({
                     status: true,

@@ -1,5 +1,7 @@
+import globalConstants from "../../../global-constants";
+
 const getMakes = async () => {
-    const promise = await fetch('http://localhost:3001/makes/all');
+    const promise = await fetch(`${globalConstants.serverUrl}/makes/all`);
     if (promise.status !== 200) {
         return [];
     } else {

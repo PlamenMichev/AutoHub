@@ -28,7 +28,7 @@ class Header extends Component {
                         <>
                             <Nav.Link as={Link} to="/createAd" className='active'>Create Ad</Nav.Link>
                             <Nav.Link as={Link} to={profileUrl} className='active'>Hello, {user.firstName}</Nav.Link> 
-                            <Nav.Link as={Link} onClick={this.logOut} className='active'>Logout</Nav.Link>
+                            <Nav.Link as={Link} onClick={this.logOut} to="#" className='active'>Logout</Nav.Link>
                         </>
                         : 
                         <>

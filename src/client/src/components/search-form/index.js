@@ -8,6 +8,8 @@ import { Row, Col, Form } from 'react-bootstrap';
 import SubmitButton from '../submit-button';
 import url from '../../utils/url';
 import UserContext from '../../Context';
+import globalConstants from '../../global-constants';
+import { withRouter } from 'react-router-dom';
 
 class SearchForm extends Component {
     constructor(props) {
@@ -27,13 +29,11 @@ class SearchForm extends Component {
 
     getMakes = async () => {
         const makes = await makesService.getMakes();
-        makes.unshift('all');
         this.setState({makes});
     }
 
     getModels = async (make) => {
         const models = await modelsService.getModels(make);
-        models.unshift('all');
         this.setState({model: ''});
         this.setState({models});
     }
@@ -59,7 +59,8 @@ class SearchForm extends Component {
         };
 
         const params = url.createGetUrl(terms);
-        const requestUrl = `http://localhost:3001/search?${params}`;
+        const requestUrl = `/search?${params}`;
+        this.props.history.push(requestUrl);
     }
 
     render () {
@@ -85,7 +86,8 @@ class SearchForm extends Component {
                             this.getModels(makeValue);
                         }}
                         value={make !== '' ? make : 'all'}
-                        options={makes}/>
+                        options={makes}
+                        placeholder='all'/>
                 </Col>
                 <Col className={styles['col-center']}>
                     <SelectInput label='Model'
@@ -93,7 +95,8 @@ class SearchForm extends Component {
                         onChange = {(e) => this.onChange(e, 'model')}
                         type='text'
                         value={model !== '' ? model : 'all'}
-                        options={models}/>
+                        options={models}
+                        placeholder='all'/>
                 </Col>
             </Row>
 
@@ -121,4 +124,4 @@ class SearchForm extends Component {
     }
 }
 
-export default SearchForm;
+export default withRouter(SearchForm);

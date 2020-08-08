@@ -1,5 +1,7 @@
+import globalConstants from "../../../global-constants";
+
 const login = async (body, onSuccess, onFailure) => {
-    const promise = await fetch('http://localhost:3001/users/login', {
+    const promise = await fetch(`${globalConstants.serverUrl}/users/login`, {
             method: 'POST',
             body: JSON.stringify(body),
             headers: {
@@ -29,7 +31,7 @@ const register = async (body, onSuccess, onFailure) => {
             formData.append(key, body[key]);
         }
 
-        const promise = await fetch('http://localhost:3001/users/register', {
+        const promise = await fetch(`${globalConstants.serverUrl}/users/register`, {
             method: 'POST',
             body: formData,
         });

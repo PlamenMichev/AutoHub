@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import styles from './index.module.css';
 import LatestAd from '../latestAd';
 import Spinner from '../spinner';
+import globalConstants from '../../global-constants';
 
 class LatestAds extends Component {
     constructor(props) {
@@ -14,7 +15,7 @@ class LatestAds extends Component {
     }
 
     getLatestAds = async () => {
-        const promise = await fetch('http://localhost:3001/ads/getLatest');
+        const promise = await fetch(`${globalConstants.serverUrl}/ads/getLatest`);
         const ads = await promise.json();
 
         if (ads.length === 0) {
@@ -44,9 +45,7 @@ class LatestAds extends Component {
             }
 
             return (
-                <LatestAd key={ad._id} adInfo={adInfo}>
-                    {ad.title}
-                </LatestAd>
+                <LatestAd key={ad._id} adInfo={adInfo} />
             )
         });
     }

@@ -1,7 +1,6 @@
 const Ad = require('../models/ad');
 
 const getSearchResults = async (terms) => {
-    console.log('terms', terms);
     let query = {...terms};
 
     // Setup query ranges

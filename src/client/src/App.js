@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import UserContext from './Context';
 import Spinner from './components/spinner';
+import globalConstants from './global-constants';
 
 //Todo put in utils
 function getCookie(name) {
@@ -45,7 +46,7 @@ class App extends Component {
             return;
         }
 
-        fetch('http://localhost:3001/users/verify', {
+        fetch(`${globalConstants.serverUrl}/users/verify`, {
             headers: {
                 'auth': token,
             },
@@ -53,7 +54,6 @@ class App extends Component {
             .then(promise => {
                 return promise.json()
             }).then((response) => {
-                console.log(response);
                 if (response.status) {
                     this.logIn({
                         id: response.user._id,
