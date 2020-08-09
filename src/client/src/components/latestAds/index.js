@@ -19,6 +19,7 @@ class LatestAds extends Component {
         const ads = await promise.json();
 
         if (ads.length === 0) {
+            this.setState({ ads, loading: false });
             return <h2>No Latest Ads</h2>
         }
 
@@ -31,6 +32,10 @@ class LatestAds extends Component {
 
     renderLatestAds = () => {
         const { ads } = this.state;
+
+        if (ads.length === 0) {
+            return <h2>No Latest Ads</h2>
+        }
 
         return ads.map(ad => {
             const adInfo = {

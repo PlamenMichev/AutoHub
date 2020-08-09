@@ -4,7 +4,7 @@ import { Button } from 'react-bootstrap';
 
 const SwitchButton = ({ title, onClick }) => {
     return (
-        <Button className={styles[title.toLowerCase()]}>{title}</Button>
+        <Button onClick={onClick} className={styles[title.toLowerCase()]}>{title}</Button>
     )
 }
 

@@ -5,20 +5,11 @@ import TextareaInput from '../textarea-input';
 import styles from './index.module.css';
 import SwitchButton from '../switch-button';
 import { Row, Col, Form } from 'react-bootstrap';
+import FormTitle from '../form-title';
 
 class SecondAdForm extends Component {
     constructor(props) {
         super(props);
-
-        this.state = {
-            price: 0,
-            distanceRun: 0,
-            horsepower: 0,
-            color: '',
-            description: '',
-            type: '',
-            types: ['Hatchback', 'Estate', 'Cabrio', 'SUV', 'Coupe', 'Sedan']
-        }
     }
 
     onChange = (event, type) => {
@@ -36,16 +27,22 @@ class SecondAdForm extends Component {
             description,
             type,
             types,
-        } = this.state;
+        } = this.props.values;
+
+        const {
+            previousStep,
+            nextStep,
+            onChange,
+        } = this.props;
 
         return (
                 <Form className={styles.form}>
-
+                    <FormTitle title="Optional ad fields" />
                     <Row>
                         <Col className={styles['col-center']}>
                             <Input label='Distance Run'
                                     id='distanceRun'
-                                    onChange = {(e) => this.onChange(e, 'distanceRun')}
+                                    onChange = {(e) => onChange(e, 'distanceRun')}
                                     type='number'
                                     value={distanceRun}
                                     />
@@ -53,7 +50,7 @@ class SecondAdForm extends Component {
                         <Col className={styles['col-center']}>
                             <Input label='Price'
                                     id='price'
-                                    onChange = {(e) => this.onChange(e, 'price')}
+                                    onChange = {(e) => onChange(e, 'price')}
                                     type='number'
                                     value={price}
                                     />
@@ -64,7 +61,7 @@ class SecondAdForm extends Component {
                         <Col className={styles['col-center']}>
                             <Input label='Horsepower'
                                     id='horsepower'
-                                    onChange = {(e) => this.onChange(e, 'horsepower')}
+                                    onChange = {(e) => onChange(e, 'horsepower')}
                                     type='number'
                                     value={horsepower}
                                     />
@@ -72,7 +69,7 @@ class SecondAdForm extends Component {
                         <Col className={styles['col-center']}>
                             <Input label='Color'
                                     id='color'
-                                    onChange = {(e) => this.onChange(e, 'color')}
+                                    onChange = {(e) => onChange(e, 'color')}
                                     type='text'
                                     value={color}
                                     />
@@ -83,7 +80,7 @@ class SecondAdForm extends Component {
                         <Col className={styles['col-center']}>
                             <TextareaInput label='Description'
                                     id='description'
-                                    onChange = {(e) => this.onChange(e, 'description')}
+                                    onChange = {(e) => onChange(e, 'description')}
                                     value={description}
                                     placeholder='Add description...'
                                     rows={4}
@@ -92,15 +89,15 @@ class SecondAdForm extends Component {
                         <Col className={styles['col-center']}>
                             <SelectInput label='Type'
                                     id='type'
-                                    onChange = {(e) => this.onChange(e, 'type')}
+                                    onChange = {(e) => onChange(e, 'type')}
                                     value={type}
                                     options={types}
                                     />
                         </Col>
                     </Row>
                     
-                    <SwitchButton title='Previous'/>
-                    <SwitchButton title='Next'/>
+                    <SwitchButton title='Previous' onClick={previousStep} />
+                    <SwitchButton title='Next' onClick={nextStep} />
                 </Form>
             )
         }
