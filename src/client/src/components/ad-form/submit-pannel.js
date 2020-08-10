@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import SwitchButton from '../switch-button';
 import FormTitle from '../form-title';
 import styles from './index.module.css';
@@ -8,8 +8,10 @@ import SubmitButton from '../submit-button';
 import adsService from '../../services/api/ads';
 import { withRouter } from 'react-router-dom';
 import globalConstants from '../../global-constants';
+import UserContext from '../../Context';
 
 const SubmitPannel = ({ previousStep, values, showError, history }) => {
+    const context = useContext(UserContext);
     const {
         title,
         make,
@@ -42,7 +44,9 @@ const SubmitPannel = ({ previousStep, values, showError, history }) => {
             description,
             type,
             photos,
+            userId: context.user.id,
         };
+        
         await adsService.CreateAd(body,
             () => {
                 history.push('/');

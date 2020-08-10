@@ -1,9 +1,13 @@
 import React from 'react';
 import styles from './index.module.css';
 
-const CarListImage = ({ imageUrl }) => {
+const CarListImage = ({ imageUrl, main = false }) => {
+    let className = 'image';
+    if (main) {
+        className = 'main-image';
+    }
     return (
-        <img className={styles.image} src={imageUrl}/>
+        <img className={styles[className]} src={imageUrl}/>
     )
 }
 

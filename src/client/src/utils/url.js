@@ -1,7 +1,6 @@
 const createGetUrl = (terms) => {
     let result = ''
     for (const term in terms) {
-        console.log(terms[term])
         if (terms[term] && terms[term] !== '') {
             result += `${term}=${terms[term]}&`
         }

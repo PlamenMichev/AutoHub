@@ -8,7 +8,8 @@ import HomePage from './pages/home-page';
 import LoginPage from './pages/login';
 import RegisterPage from './pages/register';
 import CreateAdPage from './pages/createAd';
-import AdsResult from './pages/ads-result';
+import AdsResultPage from './pages/ads-result';
+import ProfilePage from './pages/profile-page';
 
 const Navigation = () => {
     return (
@@ -18,7 +19,8 @@ const Navigation = () => {
             <Route path="/login" component={LoginPage}/>
             <Route path="/register" component={RegisterPage}/>
             <Route path="/createAd" component={CreateAdPage}/>
-            <Route path="/search" component={AdsResult}/>
+            <Route path="/search" component={AdsResultPage}/>
+            <Route path="/profile" component={ProfilePage}/>
         </Switch>
     </BrowserRouter>
     )

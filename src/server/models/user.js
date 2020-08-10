@@ -25,6 +25,10 @@ const userSchema = new mongooose.Schema({
         type: String,
         required: false,
     },
+    ads: [{
+            type: 'ObjectId',
+            ref: 'Ad',
+        }]
 });
 
 userSchema.path('email').validate(function (email) {

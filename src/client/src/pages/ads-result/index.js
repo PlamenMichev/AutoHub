@@ -15,7 +15,6 @@ const AdsResult = (props) => {
             return promise.json();
         })
         .then(response => {
-            console.log(response);
             setAds(response);
         });
     }, []);

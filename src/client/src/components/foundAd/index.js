@@ -6,9 +6,13 @@ import CarListImage from '../car-list-image';
 const FoundAd = ({ adInfo }) => {
 
     const renderCarPhotos = () => {
-        const imagesToShow = adInfo.photosUrls.slice(0, 3);
-        return imagesToShow.map(image => {
-            return <CarListImage key={image} imageUrl={image} />
+        const imagesToShow = adInfo.photosUrls.slice(0, 9);
+        return imagesToShow.map((image, index) => {
+            let main = false;
+            if (index === 0) {
+                main = true;
+            }
+            return <CarListImage key={image} imageUrl={image} main={main} />
         })
     }
 

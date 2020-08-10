@@ -7,10 +7,9 @@ const CreateAd = async (body, onSuccess, onFailure) => {
             for (const photo of body[key]) {
                 formData.append('photos', photo);
             }
-
-            break;
+        } else {
+            formData.append(key, body[key]);
         }
-        formData.append(key, body[key]);
     }
 
     const promise = await fetch(`${globalConstants.serverUrl}/ads/create`, {

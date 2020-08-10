@@ -1,4 +1,11 @@
-.image {
-    width: 27%;
+.main-image {
+    width: 60%;
     margin: 3px;
+    display: block;
+}
+
+.image {
+    width: 20%;
+    margin: 3px;
+    display: inline-block;
 }

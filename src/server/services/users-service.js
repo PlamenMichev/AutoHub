@@ -33,7 +33,9 @@ const checkUser = async (email, password) => {
 }
 
 const getUserById = async (id) => {
-    const user = await User.findById(id, 'firstName lastName email imageUrl _id');
+    const user = await User
+        .findById(id)
+        .populate('ads');
 
     return user;
 }

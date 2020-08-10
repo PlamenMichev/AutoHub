@@ -60,12 +60,9 @@ class CreateAd extends Component {
     }
 
     onFileChange = (event, type) => {
-        console.log(event.target.files);
-        const files = [...event.target.files, ...this.state.firstFormData[type]];
+        const files = [...event.target.files];
         
-        console.log('files', files);
         this.setState({ firstFormData: { ...this.state.firstFormData, [type]: files} });
-        console.log(this.state);
     }
 
     showError = (error) => {
