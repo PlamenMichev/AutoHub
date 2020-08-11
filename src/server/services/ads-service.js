@@ -1,5 +1,6 @@
 const { uploadImage } = require('../utils/cloudinary');
 const Ad = require('../models/ad');
+const User = require('../models/user');
 
 const createNewAd = async (title, make, model, price, fuelType, transmission, distanceRun, manufactureDate, horsepower, color, description, 
     type, adPlacer, photos) => {
@@ -9,6 +10,14 @@ const createNewAd = async (title, make, model, price, fuelType, transmission, di
     const currentDate = new Date();
     const ad = await new Ad({ title, make, model, price, fuelType, transmission, distanceRun, manufactureDate, horsepower, color, description, 
         type, createdOn: currentDate, adPlacer, photosUrls}).save();
+
+    if (ad) {
+        await User.findByIdAndUpdate(adPlacer, {
+            $push: {
+                ads: ad._id,
+            }
+        });
+    }
 
     return ad;
 }

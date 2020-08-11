@@ -26,7 +26,7 @@ class CreateAd extends Component {
                 transmissions: globalConstants.transmissions,
             },
             secondFormData: {
-                price: null,
+                price: 'Negotiable',
                 distanceRun: 0,
                 horsepower: 0,
                 color: '',

@@ -1,0 +1,18 @@
+.image {
+    width: 26%;
+}
+
+.container {
+    text-align: center;
+}
+
+.info {
+    margin: 3rem;
+    padding-left: 20rem;
+    padding-right: 20rem;
+    font-size: 24px;
+}
+
+.property {
+    margin-right: 3rem;
+}
