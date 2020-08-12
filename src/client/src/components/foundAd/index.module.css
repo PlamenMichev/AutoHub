@@ -9,3 +9,13 @@
 .info {
     font-size: 25px;
 }
+
+.wrapper {
+    text-decoration: none;
+    color: black;
+}
+
+.wrapper:hover {
+    text-decoration: none;
+    color: black;
+}

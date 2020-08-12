@@ -10,6 +10,7 @@ import RegisterPage from './pages/register';
 import CreateAdPage from './pages/createAd';
 import AdsResultPage from './pages/ads-result';
 import ProfilePage from './pages/profile-page';
+import AdDetailsPage from './pages/ad-details';
 
 const Navigation = () => {
     return (
@@ -21,6 +22,7 @@ const Navigation = () => {
             <Route path="/createAd" component={CreateAdPage}/>
             <Route path="/search" component={AdsResultPage}/>
             <Route path="/profile" component={ProfilePage}/>
+            <Route path="/ad" component={AdDetailsPage}/>
         </Switch>
     </BrowserRouter>
     )

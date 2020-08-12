@@ -75,7 +75,6 @@ class FirstAdForm extends Component {
             manufactureMonth,
             manufactureMonths,
             manufactureYear,
-            photos,
         } = this.props.values;
 
         const {

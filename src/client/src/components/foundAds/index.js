@@ -16,6 +16,7 @@ const FoundAds = ({ ads }) => {
                 createdOn: ad.createdOn,
                 type: ad.type,
                 photosUrls: ad.photosUrls,
+                id: ad._id,
             }
 
             return (

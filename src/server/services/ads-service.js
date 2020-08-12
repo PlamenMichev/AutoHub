@@ -36,9 +36,15 @@ const getLatestAds = async () => {
     return ads;
 }
 
+const getAdById = async (id) => {
+    const ad = await Ad.findById(id);
+    return ad;
+}
+
 
 module.exports = {
     createNewAd,
     getAllAds,
     getLatestAds,
+    getAdById,
 }

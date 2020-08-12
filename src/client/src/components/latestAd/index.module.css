@@ -16,3 +16,13 @@
     padding-bottom: 15px;
     border: solid gainsboro;
 }
+
+.wrapper {
+    text-decoration: none;
+    color: black;
+}
+
+.wrapper:hover {
+    text-decoration: none;
+    color: black;
+}

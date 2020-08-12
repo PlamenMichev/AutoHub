@@ -39,14 +39,15 @@ class LatestAds extends Component {
 
         return ads.map(ad => {
             const adInfo = {
-                title: [ad.title],
-                description: [ad.description],
-                make: [ad.make],
-                model: [ad.model],
-                price: [ad.price],
-                createdOn: [ad.createdOn],
-                type: [ad.type],
+                title: ad.title,
+                description: ad.description,
+                make: ad.make,
+                model: ad.model,
+                price: ad.price,
+                createdOn: ad.createdOn,
+                type: ad.type,
                 photosUrls: [ad.photosUrls[0]],
+                id: ad._id,
             }
 
             return (

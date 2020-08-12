@@ -2,9 +2,10 @@ import React, { useEffect, useState } from 'react';
 import PageLayout from '../../components/page-layout';
 import globalConstants from '../../global-constants';
 import FoundAds from '../../components/foundAds';
+import Spinner from '../../components/spinner';
 
 const AdsResult = (props) => {
-    const [ads, setAds] = useState([]);
+    const [ads, setAds] = useState(null);
 
     useEffect(() => {
         const params = props.location.search;
@@ -18,6 +19,12 @@ const AdsResult = (props) => {
             setAds(response);
         });
     }, []);
+
+    if (!ads) {
+        return (
+            <Spinner />
+        )
+    }
 
     return (
         <PageLayout>
