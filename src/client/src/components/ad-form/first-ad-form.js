@@ -8,6 +8,7 @@ import styles from './index.module.css';
 import SwitchButton from '../switch-button';
 import { Row, Col, Form } from 'react-bootstrap';
 import FormTitle from '../form-title';
+import ErrorMessage from '../error-message';
 
 class FirstAdForm extends Component {
     constructor(props) {
@@ -16,6 +17,7 @@ class FirstAdForm extends Component {
         this.state = {
             makes: [],
             models: [],
+            error: null,
         }
     }
 
@@ -29,10 +31,30 @@ class FirstAdForm extends Component {
         this.setState({models});
     }
 
+    handleEmailBlur = () => {
+        // const { email } = this.props.values;
+        // console.log(email);
+        // const isValid = /\S+@\S+\.\S+/.test(email);
+        // console.log(isValid);
+        // if (!isValid) {
+        //     this.setState({error: 'Email is invalid!'});
+        // } else {
+        //     this.setState({error: ''});
+        // }
+
+        const { title } = this.props.values;
+        if (title.length < 3 || title.length > 15) {
+            this.setState({error: 'Titile length is not valid.'});
+        } else {
+            this.setState({error: null});
+        }
+    }
+
     componentDidMount() {
         this.getMakes();
         const { make } = this.props.values;
-        if (make != '') {
+
+        if (make) {
             this.getModels(make);
         }
     }
@@ -65,11 +87,17 @@ class FirstAdForm extends Component {
         const {
             models,
             makes,
+            error,
         } = this.state;
 
         return (
                 <Form className={styles.form}>
                     <FormTitle title="Required ad fields" />
+                    <div className={styles['error-container']}>
+                        {error 
+                        ? <ErrorMessage error={error}/>
+                        : '' }
+                    </div>
                     <Row>
                         <Col className={styles['col-center']}>
                             <Input label='Title'
@@ -77,7 +105,9 @@ class FirstAdForm extends Component {
                                 id='title'
                                 onChange = {(e) => onChange(e, 'title')}
                                 type='text'
-                                value={title}/>
+                                value={title}
+                                onBlur={this.handleEmailBlur}
+                                />
                         </Col>
                         <Col className={styles['col-center']}>
                             <SelectInput label='Transmission'

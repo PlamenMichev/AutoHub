@@ -11,3 +11,7 @@
 .col-center {
     text-align: center;
 }
+
+.error-container {
+    height: 4rem;
+}
