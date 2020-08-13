@@ -6,7 +6,7 @@ import Input from '../../components/input';
 import styles from '../common/form.module.css';
 import { Form } from 'react-bootstrap';
 import SubmitButton from '../../components/submit-button';
-import UserContext from '../../Context';
+import UserContext from '../../user-context';
 
 class LoginPage extends Component {
     constructor(props) {

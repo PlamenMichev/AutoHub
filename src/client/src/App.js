@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
-import UserContext from './Context';
+import UserContext from './user-context';
 import Spinner from './components/spinner';
 import globalConstants from './global-constants';
+import SearchContext from './search-context';
 
 //Todo put in utils
 function getCookie(name) {
@@ -78,14 +79,16 @@ class App extends Component {
         }
 
         return (
-            <UserContext.Provider value={{
-                loggedIn,
-                user,
-                logIn: this.logIn,
-                logOut: this.logOut,
-            }}>
-                {this.props.children}
-            </UserContext.Provider>
+            <SearchContext.Provider value={null}>  
+                <UserContext.Provider value={{
+                    loggedIn,
+                    user,
+                    logIn: this.logIn,
+                    logOut: this.logOut,
+                }}>
+                    {this.props.children}
+                </UserContext.Provider>
+            </SearchContext.Provider>
         )
     }
 }

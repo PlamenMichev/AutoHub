@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { Navbar, Nav } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
-import UserContext from '../../Context';
+import UserContext from '../../user-context';
 import { withRouter } from 'react-router-dom';
 
 class Header extends Component {

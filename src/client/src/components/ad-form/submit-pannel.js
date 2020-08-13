@@ -8,7 +8,7 @@ import SubmitButton from '../submit-button';
 import adsService from '../../services/api/ads';
 import { withRouter } from 'react-router-dom';
 import globalConstants from '../../global-constants';
-import UserContext from '../../Context';
+import UserContext from '../../user-context';
 
 const SubmitPannel = ({ previousStep, values, showError, history }) => {
     const context = useContext(UserContext);

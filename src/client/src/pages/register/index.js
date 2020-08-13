@@ -6,7 +6,7 @@ import FileInput from '../../components/file-input';
 import styles from '../common/form.module.css';
 import { Form } from 'react-bootstrap';
 import SubmitButton from '../../components/submit-button';
-import UserContext from '../../Context';
+import UserContext from '../../user-context';
 import authService from '../../services/api/auth';
 
 class RegisterPage extends Component {

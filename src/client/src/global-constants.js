@@ -5,4 +5,6 @@ export default {
     fuelTypes: ['Diesel', 'Gasoline', 'Gas', 'Electric', 'Hybrid'],
     transmissions: ['Manual', 'Automatic'],
     types: ['Hatchback', 'Estate', 'Cabrio', 'SUV', 'Coupe', 'Sedan'],
+    colors: ['Black', 'Metallic', 'Green', 'Yellow', 'Red', 'Orange', 'White',
+              'Blue', 'Light', 'Dark'],
 }

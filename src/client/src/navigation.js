@@ -14,17 +14,17 @@ import AdDetailsPage from './pages/ad-details';
 
 const Navigation = () => {
     return (
-    <BrowserRouter>
-        <Switch>
-            <Route exact path="/" component={HomePage}/>
-            <Route path="/login" component={LoginPage}/>
-            <Route path="/register" component={RegisterPage}/>
-            <Route path="/createAd" component={CreateAdPage}/>
-            <Route path="/search" component={AdsResultPage}/>
-            <Route path="/profile" component={ProfilePage}/>
-            <Route path="/ad" component={AdDetailsPage}/>
-        </Switch>
-    </BrowserRouter>
+        <BrowserRouter>
+            <Switch>
+                <Route exact path="/" component={HomePage}/>
+                <Route path="/login" component={LoginPage}/>
+                <Route path="/register" component={RegisterPage}/>
+                <Route path="/createAd" component={CreateAdPage}/>
+                <Route path="/search" component={AdsResultPage}/>
+                <Route path="/profile" component={ProfilePage}/>
+                <Route path="/ad" component={AdDetailsPage}/>
+            </Switch>
+        </BrowserRouter>
     )
 }
 
