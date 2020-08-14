@@ -20,8 +20,7 @@ const CreateAd = async (body, onSuccess, onFailure) => {
     const response = await promise.json();
 
     if (promise.status > 300) {
-        const error = await response.message;
-        onFailure(error);
+        onFailure('Invalid data!');
     } else {
         onSuccess();
     }

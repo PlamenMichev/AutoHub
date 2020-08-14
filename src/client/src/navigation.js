@@ -1,8 +1,9 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import {
     BrowserRouter,
     Switch,
-    Route
+    Route,
+    Redirect,
 } from 'react-router-dom';
 import HomePage from './pages/home-page';
 import LoginPage from './pages/login';
@@ -11,17 +12,20 @@ import CreateAdPage from './pages/createAd';
 import AdsResultPage from './pages/ads-result';
 import ProfilePage from './pages/profile-page';
 import AdDetailsPage from './pages/ad-details';
+import UserContext from './user-context';
 
 const Navigation = () => {
+    const context = useContext(UserContext);
+    const loggedIn = context.loggedIn;
     return (
         <BrowserRouter>
             <Switch>
                 <Route exact path="/" component={HomePage}/>
-                <Route path="/login" component={LoginPage}/>
-                <Route path="/register" component={RegisterPage}/>
-                <Route path="/createAd" component={CreateAdPage}/>
+                <Route path="/login" component={!loggedIn ? LoginPage : Redirect}/>
+                <Route path="/register" component={!loggedIn ? RegisterPage : Redirect}/>
+                <Route path="/createAd" component={loggedIn ? CreateAdPage : Redirect}/>
                 <Route path="/search" component={AdsResultPage}/>
-                <Route path="/profile" component={ProfilePage}/>
+                <Route path="/profile" component={loggedIn ? ProfilePage : Redirect}/>
                 <Route path="/ad" component={AdDetailsPage}/>
             </Switch>
         </BrowserRouter>

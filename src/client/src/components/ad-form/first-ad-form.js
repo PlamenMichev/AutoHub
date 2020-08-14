@@ -17,7 +17,7 @@ class FirstAdForm extends Component {
         this.state = {
             makes: [],
             models: [],
-            error: null,
+            errors: [],
         }
     }
 
@@ -31,7 +31,7 @@ class FirstAdForm extends Component {
         this.setState({models});
     }
 
-    handleEmailBlur = () => {
+    handleLengthBlur = (property, message, minLength, maxLength) => {
         // const { email } = this.props.values;
         // console.log(email);
         // const isValid = /\S+@\S+\.\S+/.test(email);
@@ -42,11 +42,33 @@ class FirstAdForm extends Component {
         //     this.setState({error: ''});
         // }
 
-        const { title } = this.props.values;
-        if (title.length < 3 || title.length > 15) {
-            this.setState({error: 'Titile length is not valid.'});
+        const currentProperty = this.props.values[property];
+        const { errors } = this.state;
+
+        if (currentProperty.length < minLength || currentProperty.length > maxLength) {
+            if (!errors.includes(message)) {
+                this.setState({errors: [...errors, message]});
+            }
         } else {
-            this.setState({error: null});
+            const newErrorState = errors.filter(function(err) {
+                return err !== message
+            })
+            this.setState({errors: newErrorState});
+        }
+    }
+
+    handleRequiredBlur = (property, message) => {
+        const currentProperty = this.props.values[property];
+        const { errors } = this.state;
+        if (currentProperty === '') {
+            if (!errors.includes(message)) {
+                this.setState({errors: [...errors, message]});
+            }
+        } else {
+            const newErrorState = errors.filter(function(err) {
+                return err !== message
+            })
+            this.setState({errors: newErrorState}); 
         }
     }
 
@@ -59,7 +81,7 @@ class FirstAdForm extends Component {
         }
     }
 
-    componentDidUpdateasdf() {
+    componentDidUpdate() {
         this.getMakes();
     }
 
@@ -86,15 +108,16 @@ class FirstAdForm extends Component {
         const {
             models,
             makes,
-            error,
+            errors,
         } = this.state;
+
 
         return (
                 <Form className={styles.form}>
                     <FormTitle title="Required ad fields" />
                     <div className={styles['error-container']}>
-                        {error 
-                        ? <ErrorMessage error={error}/>
+                        {errors.length !== 0
+                        ? <ErrorMessage error={errors[errors.length - 1]}/>
                         : '' }
                     </div>
                     <Row>
@@ -105,7 +128,7 @@ class FirstAdForm extends Component {
                                 onChange = {(e) => onChange(e, 'title')}
                                 type='text'
                                 value={title}
-                                onBlur={this.handleEmailBlur}
+                                onBlur={() => this.handleLengthBlur('title', 'Title should be between 3 and 15 symbols.', 3, 15)}
                                 />
                         </Col>
                         <Col className={styles['col-center']}>
@@ -113,7 +136,8 @@ class FirstAdForm extends Component {
                                     id='transmission'
                                     onChange = {(e) => onChange(e, 'transmission')}
                                     value={transmission}
-                                    options={transmissions}/>
+                                    options={transmissions}
+                                    onBlur={() => this.handleRequiredBlur('transmission', 'Transmission is required.')}/>
                         </Col>
                     </Row>
 
@@ -127,7 +151,8 @@ class FirstAdForm extends Component {
                                     this.getModels(makeValue);
                                 }}
                                 value={make}
-                                options={makes}/>
+                                options={makes}
+                                onBlur={() => this.handleRequiredBlur('make', 'Make is required.')}/>
                         </Col>
                         <Col className={styles['col-center']}>
                             <SelectInput label='Model'
@@ -135,7 +160,8 @@ class FirstAdForm extends Component {
                                 onChange = {(e) => onChange(e, 'model')}
                                 type='text'
                                 value={model}
-                                options={models}/>
+                                options={models}
+                                onBlur={() => this.handleRequiredBlur('model', 'Model is required.')}/>
                         </Col>
                     </Row>
 
@@ -145,7 +171,8 @@ class FirstAdForm extends Component {
                                 id='manufactureMonth'
                                 onChange = {(e) => onChange(e, 'manufactureMonth')}
                                 value={manufactureMonth}
-                                options={manufactureMonths}/>
+                                options={manufactureMonths}
+                                onBlur={() => this.handleRequiredBlur('manufactureMonth', 'Manufacture month is required.')}/>
                         </Col>
                         <Col className={styles['col-center']}>
                             <Input label='Manufacture Year'
@@ -156,7 +183,7 @@ class FirstAdForm extends Component {
                                             min={1900}
                                             max={2021}
                                             step={1}
-                                            />
+                                            onBlur={() => this.handleRequiredBlur('manufactureYear', 'Manufacture year is required.')}/>
                         </Col>
                     </Row>
 
@@ -166,17 +193,18 @@ class FirstAdForm extends Component {
                                 id='fuelType'
                                 onChange = {(e) => onChange(e, 'fuelType')}
                                 value={fuelType}
-                                options={fuelTypes}/>
+                                options={fuelTypes}
+                                onBlur={() => this.handleRequiredBlur('fuelType', 'Fuel Type is required.')}/>
                         </Col>
                         <Col className={styles['col-center']}>
                             <FileInput label='Photos'
                                     id='photos'
                                     onChange = {(e) => onFileChange(e, 'photos')}
                                     multiple={true}
-                                    />
+                                    onBlur={() => this.handleLengthBlur('photos', 'At least one photo is required.', 3, 15)}/>
                         </Col>
                     </Row>
-                    <SwitchButton title='Next' onClick={nextStep}/>
+                    <SwitchButton title='Next' onClick={errors.length === 0 ? nextStep : null}/>
                 </Form>
             )
         }

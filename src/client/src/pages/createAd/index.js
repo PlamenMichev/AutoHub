@@ -5,6 +5,7 @@ import FirstAdForm from '../../components/ad-form/first-ad-form';
 import SecondAdForm from '../../components/ad-form/second-ad-form';
 import SubmitPannel from '../../components/ad-form/submit-pannel';
 import globalConstants from '../../global-constants';
+import ErrorMessage from '../../components/error-message';
 
 class CreateAd extends Component {
     constructor(props) {
@@ -34,7 +35,7 @@ class CreateAd extends Component {
                 type: '',
                 types: globalConstants.types,
             },
-            error: '',
+            error: null,
         }
     }
 
@@ -66,6 +67,7 @@ class CreateAd extends Component {
     }
 
     showError = (error) => {
+        console.log('How much money u got?', error);
         this.setState({error: error});
     }
 
@@ -103,7 +105,11 @@ class CreateAd extends Component {
         return (
             <PageLayout>
                 <PageHeader title='Create New Ad'/>
-                <div>{error}</div>
+                {
+                    error 
+                    ? <ErrorMessage error={error}/>
+                    : ''
+                }
                 { this.renderStep() }
                
             </PageLayout>

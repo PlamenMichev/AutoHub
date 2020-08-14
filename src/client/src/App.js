@@ -37,6 +37,7 @@ class App extends Component {
             loggedIn: false,
             user: null,
         });
+        
     }
 
     componentDidMount() {

@@ -2,7 +2,7 @@ import React from 'react';
 import { Form } from 'react-bootstrap';
 import styles from './index.module.css';
 
-const FileInput = ({ id, label, onChange, value, multiple}) => {
+const FileInput = ({ id, label, onChange, value, multiple, onBlur}) => {
     return (
         <Form.Group className={styles.group}>
             <Form.Label className={styles.label} htmlFor={id}>{label}: </Form.Label>
@@ -12,6 +12,7 @@ const FileInput = ({ id, label, onChange, value, multiple}) => {
                 onChange={onChange}
                 value={value}
                 multiple={multiple}
+                onBlur={onBlur}
                 custom
             />
         </Form.Group>
