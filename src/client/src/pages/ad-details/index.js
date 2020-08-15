@@ -44,7 +44,6 @@ const AdDetails = (props) => {
     }
 
     if (!ad) {
-        console.log('asdasdasd');
         return (
             <Spinner />
         )
@@ -70,8 +69,8 @@ const AdDetails = (props) => {
                         <li>Fuel: {ad.fuelType}</li>
                         <li>Manufacture Year: {globalConstants.months[new Date(ad.manufactureDate).getMonth()]} {new Date(ad.manufactureDate).getFullYear()}</li>
 
-                        <li>Distance Run: { ad.distanceRun !== '' ? ad.distanceRun : 'Not filled' }</li>
-                        <li>Horsepower: { ad.horsepower !== '' ? ad.horsepower : 'Not filled' }</li>
+                        <li>Distance Run: { ad.distanceRun !== 0 ? ad.distanceRun : 'Not filled' }</li>
+                        <li>Horsepower: { ad.horsepower !== 0 ? ad.horsepower : 'Not filled' }</li>
                         <li>Color: { ad.color !== '' ? ad.color : 'Not filled' }</li>
                         <li>Type: { ad.type !== '' ? ad.type : 'Not filled' }</li>
                     

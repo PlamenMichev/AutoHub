@@ -2,7 +2,7 @@ import React from 'react';
 import { Form } from 'react-bootstrap';
 import styles from './index.module.css';
 
-const TextareaInput = ({ id, label, placeholder, onChange, value, rows}) => {
+const TextareaInput = ({ id, label, placeholder, onChange, value, rows, onBlur}) => {
     return (
         <Form.Group className={styles.group}>
             <Form.Label className={styles.label} htmlFor={id}>{label}: </Form.Label>
@@ -14,6 +14,7 @@ const TextareaInput = ({ id, label, placeholder, onChange, value, rows}) => {
                 label='Add file here...'
                 onChange={onChange}
                 value={value}
+                onBlur={onBlur}
             />
         </Form.Group>
     );

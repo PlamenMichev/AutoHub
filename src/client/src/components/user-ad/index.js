@@ -3,7 +3,6 @@ import { Card, Button } from 'react-bootstrap';
 import styles from './index.module.css';
 
 const UserAd = ({ ad }) => {
-    console.log(ad);
     return (
         <Card className={styles.card}>
             <Card.Img variant="top" src={ad.photosUrls[0]} />

@@ -7,6 +7,7 @@ import styles from '../common/form.module.css';
 import { Form } from 'react-bootstrap';
 import SubmitButton from '../../components/submit-button';
 import UserContext from '../../user-context';
+import ErrorMessage from '../../components/error-message';
 
 class LoginPage extends Component {
     constructor(props) {
@@ -15,7 +16,7 @@ class LoginPage extends Component {
         this.state = {
             email: '',
             password: '',
-            error: '',
+            error: null,
         }
     }
 
@@ -41,9 +42,7 @@ class LoginPage extends Component {
             },
             async (e) => {
                 this.setState({error: e});
-            })
-
-        
+            })        
     }
 
     render() {
@@ -56,8 +55,14 @@ class LoginPage extends Component {
         return (
             <PageLayout>
                 <PageHeader title='Login Page'/>
-                <div>{error}</div>
                 <Form className={styles.form} onSubmit={this.submitForm}>
+                    <div className={styles['error-container']}>
+                        {
+                            error 
+                            ? <ErrorMessage error={error}/>
+                            : ''
+                        }
+                    </div>
                     <Input label='Email'
                            placeholder='Your email...'
                            id='email'

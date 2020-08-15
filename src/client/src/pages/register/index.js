@@ -8,6 +8,7 @@ import { Form } from 'react-bootstrap';
 import SubmitButton from '../../components/submit-button';
 import UserContext from '../../user-context';
 import authService from '../../services/api/auth';
+import ErrorMessage from '../../components/error-message';
 
 class RegisterPage extends Component {
     constructor(props) {
@@ -21,7 +22,7 @@ class RegisterPage extends Component {
             lastName: '',
             phoneNumber: '',
             profilePicture: '',
-            error: '',
+            errors: [],
         }
     }
 
@@ -37,6 +38,87 @@ class RegisterPage extends Component {
         const newState = {};
         newState[type] = event.target.files[0];
         this.setState(newState);
+    }
+
+    handleEmailBlur = (message) => {
+        const { email } = this.state;
+        const isValid = /\S+@\S+\.\S+/.test(email);
+        const errors = this.state.errors;
+        if (!isValid) {
+            if (!errors.includes(message)) {
+                this.setState({errors: [...errors, message]});
+            }
+        } else {
+            const newErrorState = errors.filter(function(err) {
+                return err !== message
+            })
+            this.setState({errors: newErrorState});
+        }
+    }
+
+    handlePasswordBlur = (message) => {
+        const { password } = this.state;
+
+        const errors = this.state.errors;
+        if (password.length < 3 || password.length > 20) {
+            if (!errors.includes(message)) {
+                this.setState({errors: [...errors, message]});
+            }
+        } else {
+            const newErrorState = errors.filter(function(err) {
+                return err !== message
+            })
+            this.setState({errors: newErrorState});
+        }
+    }
+
+    handleRePasswordBlur = (message) => {
+        const { password, rePassword } = this.state;
+
+        const errors = this.state.errors;
+        if (rePassword !== password) {
+            if (!errors.includes(message)) {
+                this.setState({errors: [...errors, message]});
+            }
+        } else {
+            const newErrorState = errors.filter(function(err) {
+                return err !== message
+            })
+            this.setState({errors: newErrorState});
+        }
+    }
+
+    handleNameBlur = (name, message) => {
+        const property = this.state[name];
+
+        const errors = this.state.errors;
+        if (property.length < 2 || property.length > 20) {
+            if (!errors.includes(message)) {
+                this.setState({errors: [...errors, message]});
+            }
+        } else {
+            const newErrorState = errors.filter(function(err) {
+                return err !== message
+            })
+            this.setState({errors: newErrorState});
+        }
+    }
+
+    handlePhoneNumberBlur = (message) => {
+        const { phoneNumber } = this.state;
+        const isOnlyDigits = /^[0-9]+$/.test(phoneNumber);
+        console.log(isOnlyDigits);
+        const errors = this.state.errors;
+        if ((phoneNumber.length < 9 || phoneNumber.length > 15) || !isOnlyDigits) {
+            if (!errors.includes(message)) {
+                this.setState({errors: [...errors, message]});
+            }
+        } else {
+            const newErrorState = errors.filter(function(err) {
+                return err !== message
+            })
+            this.setState({errors: newErrorState});
+        }
     }
 
     submitForm = async (event) => {
@@ -56,7 +138,7 @@ class RegisterPage extends Component {
             this.props.history.push('/');
         },
         (error) => {
-            this.setState({error})
+            this.setState({errors: 'Invalid data!'})
         })
     }
 
@@ -68,55 +150,71 @@ class RegisterPage extends Component {
             firstName,
             lastName,
             phoneNumber,
-            error,
+            errors,
         } = this.state;
 
         return (
             <PageLayout>
                 <PageHeader title='Register Page'/>
-                <p>{error}</p>
                 <Form className={styles.form} onSubmit={this.submitForm}>
+                    <div className={styles['error-container']}>
+                            {errors.length !== 0
+                            ? <ErrorMessage error={errors[errors.length - 1]}/>
+                            : '' }
+                    </div>
                     <Input label='Email'
                            placeholder='Your email...'
                            id='email'
                            onChange = {(e) => this.onChange(e, 'email')}
                            type='email'
-                           value={email}/>
+                           value={email}
+                           onBlur={() => this.handleEmailBlur('Email is invalid!')}
+                           />
 
                     <Input label='Password'
                            placeholder='Your password...'
                            id='password'
                            onChange = {(e) => this.onChange(e, 'password')}
                            type='password'
-                           value={password}/>
+                           value={password}
+                           onBlur={() => this.handlePasswordBlur('Password should be between 3 and 20 symbols.')}
+                           />
 
                     <Input label='Repeat Password'
                            placeholder='Password again...'
                            id='rePassword'
                            onChange = {(e) => this.onChange(e, 'rePassword')}
                            type='password'
-                           value={rePassword}/>
+                           value={rePassword}
+                           onBlur={() => this.handleRePasswordBlur('Repassword should match the password.')}
+                           />
                            
                     <Input label='First Name'
                            placeholder='Your first name...'
                            id='firstName'
                            onChange = {(e) => this.onChange(e, 'firstName')}
                            type='text'
-                           value={firstName}/>
+                           value={firstName}
+                           onBlur={() => this.handleNameBlur('firstName', 'First Name should be between 3 and 20 symbols.')}
+                           />
 
                     <Input label='Last Name'
                            placeholder='Your last name...'
                            id='lastName'
                            onChange = {(e) => this.onChange(e, 'lastName')}
                            type='text'
-                           value={lastName}/>
+                           value={lastName}
+                           onBlur={() => this.handleNameBlur('lastName', 'Last Name should be between 3 and 20 symbols.')}
+                           />
 
                     <Input label='Phone Number (Optional)'
                            placeholder='Your phone number...'
                            id='phoneNumber'
                            onChange = {(e) => this.onChange(e, 'phoneNumber')}
                            type='text'
-                           value={phoneNumber}/>
+                           value={phoneNumber}
+                           onBlur={() => this.handlePhoneNumberBlur('Phone number is invalid.')}
+                           />
 
                     <FileInput label='Profile Picture (Optional)'
                            id='profilePicture'

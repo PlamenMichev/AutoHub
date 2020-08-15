@@ -8,3 +8,7 @@
     padding: 10px;
     overflow: hidden;
 }
+
+.error-container {
+    height: 4rem;
+}

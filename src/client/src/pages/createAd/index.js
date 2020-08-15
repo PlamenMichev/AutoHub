@@ -67,7 +67,6 @@ class CreateAd extends Component {
     }
 
     showError = (error) => {
-        console.log('How much money u got?', error);
         this.setState({error: error});
     }
 

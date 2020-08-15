@@ -16,7 +16,6 @@ const ProfilePage = (props) => {
         async function fetchUser() {
             const user = await usersService.getUser(id);
             setUser(user);
-            console.log(user);
         }
         fetchUser();
     }, [])

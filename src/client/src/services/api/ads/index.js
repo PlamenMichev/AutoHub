@@ -17,8 +17,6 @@ const CreateAd = async (body, onSuccess, onFailure) => {
         body: formData,
     });
 
-    const response = await promise.json();
-
     if (promise.status > 300) {
         onFailure('Invalid data!');
     } else {

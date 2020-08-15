@@ -32,16 +32,6 @@ class FirstAdForm extends Component {
     }
 
     handleLengthBlur = (property, message, minLength, maxLength) => {
-        // const { email } = this.props.values;
-        // console.log(email);
-        // const isValid = /\S+@\S+\.\S+/.test(email);
-        // console.log(isValid);
-        // if (!isValid) {
-        //     this.setState({error: 'Email is invalid!'});
-        // } else {
-        //     this.setState({error: ''});
-        // }
-
         const currentProperty = this.props.values[property];
         const { errors } = this.state;
 
