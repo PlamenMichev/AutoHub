@@ -63,7 +63,7 @@ class SearchForm extends Component {
         };
 
         const params = url.createGetUrl(terms);
-        const requestUrl = `/search?${params}`;
+        const requestUrl = `/search?${params}&page=1`;
         this.props.history.push(requestUrl);
     }
 

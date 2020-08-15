@@ -1,6 +1,6 @@
 import globalConstants from '../../../global-constants';
 
-const CreateAd = async (body, onSuccess, onFailure) => {
+const createAd = async (body, onSuccess, onFailure) => {
     const formData = new FormData();
     for (const key in body) {
         if (key === 'photos') {
@@ -24,6 +24,15 @@ const CreateAd = async (body, onSuccess, onFailure) => {
     }
 }
 
+const getAdsCount = async () => {
+    const promise = await fetch(`${globalConstants.serverUrl}/ads/count`);
+    const response = await promise.json();
+    
+    return response;
+}
+
+
 export default {
-    CreateAd,
+    createAd,
+    getAdsCount,
 }

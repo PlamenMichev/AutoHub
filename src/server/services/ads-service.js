@@ -28,6 +28,12 @@ const getAllAds = async () => {
     return ads;
 }
 
+const getAdsCount = async () => {
+    const count = await Ad.countDocuments();
+    
+    return count;
+}
+
 const getLatestAds = async () => {
     const ads = await Ad.find()
         .sort({ createdOn: -1 })
@@ -47,4 +53,5 @@ module.exports = {
     getAllAds,
     getLatestAds,
     getAdById,
+    getAdsCount,
 }

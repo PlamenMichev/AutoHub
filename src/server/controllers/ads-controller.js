@@ -1,4 +1,4 @@
-const { createNewAd, getAllAds, getLatestAds, getAdById } = require('../services/ads-service');
+const { createNewAd, getAllAds, getLatestAds, getAdById, getAdsCount } = require('../services/ads-service');
 
 const createAd = async (req, res) => {
     let {
@@ -45,6 +45,13 @@ const getAds = async (req, res) => {
         .json(ads);
 }
 
+const getCount = async (req, res) => {
+    const count = await getAdsCount();
+
+    res.status(200)
+        .json(count);
+}
+
 const getLatest = async (req, res) => {
     const ads = await getLatestAds();
 
@@ -66,5 +73,6 @@ module.exports = {
     createAd,
     getAds,
     getLatest,
-    getAd
+    getAd,
+    getCount,
 }

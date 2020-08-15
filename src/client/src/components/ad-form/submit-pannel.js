@@ -47,7 +47,7 @@ const SubmitPannel = ({ previousStep, values, showError, history }) => {
             userId: context.user.id,
         };
         
-        await adsService.CreateAd(body,
+        await adsService.createAd(body,
             () => {
                 history.push('/');
             },
