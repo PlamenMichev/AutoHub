@@ -11,10 +11,8 @@
 - [Getting Started](#getting_started)
 - [Usage](#usage)
 - [Built Using](#built_using)
-- [TODO](../TODO.md)
-- [Contributing](../CONTRIBUTING.md)
+- [TODO](#ToDo)
 - [Authors](#authors)
-- [Acknowledgments](#acknowledgement)
 
 ## 🧐 About <a name = "about"></a>
 The purpose of the project is to practice my React.js and express.js skills. The idea is not original but it is interesting and I think making a platform for selling cars as a SPA is more user friendly.
@@ -48,5 +46,11 @@ see their profile with their data.
 - [CarsDataset](https://www.back4app.com/database/back4app/car-make-model-dataset) - ExternalAPI
 - [Cloudinary](https://cloudinary.com/) - ExternalAPI
 
+## ⛏️ ToDo <a name = "ToDo"></a>
+- Add credit card or paypal payment for promoting ads
+- Add all CRUD operations for ads and users
+- Create chat
+- Beautify app's UI
+
 ## ✍️ Authors <a name = "authors"></a>
-- [@kylelobo](https://github.com/PlamenMichev) - Idea & Initial work
+- [@Plamen Michev](https://github.com/PlamenMichev) - Idea & Initial work
