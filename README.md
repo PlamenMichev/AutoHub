@@ -24,11 +24,19 @@ The project consists of client and server side. They can be used separately or a
 To start the React.js client side part got to client folder open command prompt and type the following text
 
 ```
+npm install
+```
+and then
+```
 npm start
 ```
 
 And repeat for the rest api in the server folder
 
+```
+npm install
+```
+and then
 ```
 npm start
 ```
