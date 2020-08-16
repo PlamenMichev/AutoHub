@@ -12,6 +12,7 @@ import CreateAdPage from './pages/createAd';
 import AdsResultPage from './pages/ads-result';
 import ProfilePage from './pages/profile-page';
 import AdDetailsPage from './pages/ad-details';
+import ErrorPage from './pages/error-page';
 import UserContext from './user-context';
 
 const Navigation = () => {
@@ -27,6 +28,7 @@ const Navigation = () => {
                 <Route path="/search" component={AdsResultPage}/>
                 <Route path="/profile" component={loggedIn ? ProfilePage : Redirect}/>
                 <Route path="/ad" component={AdDetailsPage}/>
+                <Route path="*" component={ErrorPage}/>
             </Switch>
         </BrowserRouter>
     )
