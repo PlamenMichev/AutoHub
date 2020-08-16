@@ -5,6 +5,7 @@ import globalConstants from '../../global-constants';
 import AdDetailsImage from '../../components/ad-details-image';
 import styles from './index.module.css';
 import ImageModal from '../../components/image-modal';
+import UserInfo from '../../components/userInfo';
 
 const AdDetails = (props) => {
     const [ad, setAd] = useState(null);
@@ -55,7 +56,7 @@ const AdDetails = (props) => {
             <h1 className="my-4">{ad.title}
                 <small>          {ad.price} {ad.price !== 'Negotiable' ? 'lv' : ''}</small>
             </h1>
-            <div className="row">
+            <div className={`row ${styles.wrapper}`}>
                 <AdDetailsImage images={ad.photosUrls} onClick={onPhotoClick} />
 
                 <div className="col-md-4">
@@ -75,6 +76,9 @@ const AdDetails = (props) => {
                         <li>Type: { ad.type !== '' ? ad.type : 'Not filled' }</li>
                     
                     </ul>
+
+                    <UserInfo user={ad.adPlacer}/>
+
                 </div>
             </div>
         </div>

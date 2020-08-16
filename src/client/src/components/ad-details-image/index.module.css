@@ -1,8 +1,9 @@
 .main {
-    width: 80%;
+    width: 350px;
 }
 
 .image {
+    width: 100px;
     display: inline;
 }
 

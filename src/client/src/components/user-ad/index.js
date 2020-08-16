@@ -1,5 +1,6 @@
 import React from 'react';
 import { Card, Button } from 'react-bootstrap';
+import { Link } from 'react-router-dom';
 import styles from './index.module.css';
 
 const UserAd = ({ ad }) => {
@@ -11,7 +12,9 @@ const UserAd = ({ ad }) => {
                 <Card.Text>
                 {ad.description || ad.transmission + ' ' + ad.fuelType }
                 </Card.Text>
-                <Button variant="primary">See ad</Button>
+                <Link to={`/ad/${ad._id}`}>
+                    <Button variant="primary">See ad</Button>
+                </Link>
             </Card.Body>
         </Card>
     )

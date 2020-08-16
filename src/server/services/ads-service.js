@@ -43,7 +43,7 @@ const getLatestAds = async () => {
 }
 
 const getAdById = async (id) => {
-    const ad = await Ad.findById(id);
+    const ad = await Ad.findById(id).populate('adPlacer');
     return ad;
 }
 

@@ -41,6 +41,7 @@ const getSearchResults = async (terms, page, perPage) => {
     
     const result = await Ad
         .find({...query})
+        .sort('-createdOn')
         .skip((page - 1) * perPage)
         .limit(+perPage);
 

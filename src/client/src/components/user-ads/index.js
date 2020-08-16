@@ -14,7 +14,7 @@ const UserAds = ({ ads }) => {
     }
 
     return (
-        <div>
+        <div className={styles.wrapper}>
             { renderAds() }
         </div>
     )

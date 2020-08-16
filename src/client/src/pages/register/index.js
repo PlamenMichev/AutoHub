@@ -107,7 +107,6 @@ class RegisterPage extends Component {
     handlePhoneNumberBlur = (message) => {
         const { phoneNumber } = this.state;
         const isOnlyDigits = /^[0-9]+$/.test(phoneNumber);
-        console.log(isOnlyDigits);
         const errors = this.state.errors;
         if ((phoneNumber.length < 9 || phoneNumber.length > 15) || !isOnlyDigits) {
             if (!errors.includes(message)) {

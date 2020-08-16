@@ -21,7 +21,7 @@ class Header extends Component {
 
         return (
             <Navbar bg="primary" variant="dark">
-                <Navbar.Brand as={Link} to="/">Navbar</Navbar.Brand>
+                <Navbar.Brand as={Link} to="/"><strong>Auto</strong>Hub</Navbar.Brand>
                 <Nav className="ml-auto">
                         {loggedIn 
                         ? 

@@ -18,8 +18,8 @@ const FoundAd = ({ adInfo }) => {
     }
 
     return (
-        <Link to={`/ad/${adInfo.id}`} className={styles.wrapper}>
-            <div className={styles.ad}>
+        <div className={styles.ad}>
+            <Link to={`/ad/${adInfo.id}`} className={styles.wrapper}>
                 <Row>
                     <Col>
                         { renderCarPhotos() }
@@ -31,13 +31,13 @@ const FoundAd = ({ adInfo }) => {
                             : adInfo.description.substring(0, 100)}</span>
                     </Col>
                     <Col>
-                        <h3>{adInfo.price} lv.</h3>
+                        <h3>{adInfo.price !== 'Negotiable' ? adInfo.price + 'lv.' : adInfo.price}</h3>
                         <hr />
                         <span className={styles.info}>{adInfo.make} {adInfo.model} {adInfo.type ? ' - ' + adInfo.type : ''}</span>
                     </Col>
                 </Row>
-            </div>
-        </Link>
+            </Link>
+        </div>
     )
 }
 

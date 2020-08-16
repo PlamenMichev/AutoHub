@@ -1,6 +1,7 @@
 import React from 'react';
 import { Modal } from 'react-bootstrap';
 import SwitchButton from '../switch-button';
+import styles from './index.module.css';
 
 const ImageModal = (props) => {
     return (<Modal
@@ -12,7 +13,7 @@ const ImageModal = (props) => {
       <Modal.Header closeButton>
       </Modal.Header>
       <Modal.Body>
-        <img src={props.image} className='w-100' alt='Car image' />
+        <img src={props.image} className={styles.image} alt='Car image' />
       </Modal.Body>
       <Modal.Footer>
         <SwitchButton onClick={props.previousImage}  title='Previous'/>
